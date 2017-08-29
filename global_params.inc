@@ -32,12 +32,15 @@
 //////////////////////////////////////////////////
 
 $src_array=array(
-	"fwi"
+	"mexico"
 );
 
 /*
 $src_array=array(
 	"enquist",
+	"fwi",
+	"mexico",
+	"mabberley",
 	"ipane",
 	"tropicos",
 	"usda",
@@ -65,7 +68,7 @@ $replace_db = true;
 // Drop raw data tables after import complete?
 // (true/false)
 //////////////////////////////////////////////////
-$drop_raw=true;
+$drop_raw=false;
 
 //////////////////////////////////////////////////
 // Include paths and filenames
@@ -80,7 +83,6 @@ include $global_utilities_path."sql_functions.inc";
 include $global_utilities_path."geo_functions.inc";
 $timer_on=$global_utilities_path."timer_on.inc";
 $timer_off=$global_utilities_path."timer_off.inc";
-
 
 //////////////////////////////////////////////////
 // Db connection info
@@ -102,7 +104,5 @@ $die_on_fail = true;
 $done = "done\r\n";
 $msg_success = "done\r\n";
 $msg_fail = "failed!\r\n";
-
-
 
 ?>

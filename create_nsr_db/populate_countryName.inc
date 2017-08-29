@@ -4,7 +4,9 @@
 // Populates table countryName
 //////////////////////////////////////////
 
-echo "Populating table countryName...";
+echo "Populating political division tables:\r\n";
+
+echo " countryName...";
 $sql="
 LOAD DATA $local INFILE '$datapath$file_country' 
 INTO TABLE $tbl_country 

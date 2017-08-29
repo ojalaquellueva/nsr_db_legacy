@@ -8,7 +8,7 @@ $tbl_raw_2 = $tbl_raw . "_regions";
 
 echo "  Removing non-unique records:\r\n";
 
-echo "    Create table $tbl_raw_2..."
+echo "    Creating table $tbl_raw_2...";
 $sql="
 DROP TABLE IF EXISTS $tbl_raw_2;
 CREATE TABLE $tbl_raw_temp (
@@ -31,7 +31,7 @@ lesserAntillles VARCHAR(255) DEFAULT NULL
 sql_execute_multiple($sql);
 echo $done;
 
-echo "    Create table $tbl_raw_2..."
+echo "    Insert distinct records into $tbl_raw_2...";
 $sql="
 
 INSERT INTO $tbl_raw_2 (

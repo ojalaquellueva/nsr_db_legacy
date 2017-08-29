@@ -2,11 +2,7 @@
 
 echo "Creating tables...";
 $sql="
-DROP TABLE IF EXISTS cultspp;
-DROP TABLE IF EXISTS distribution;
 DROP TABLE IF EXISTS source;
-DROP TABLE IF EXISTS $tbl_country;
-
 CREATE TABLE source (
 source_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
 source_name VARCHAR(50) NOT NULL,
@@ -21,6 +17,7 @@ taxonomic_scope VARCHAR(250) DEFAULT NULL,
 PRIMARY KEY (source_id)
 );
 
+DROP TABLE IF EXISTS distribution;
 CREATE TABLE distribution (
 distribution_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
 source_id INT(11) UNSIGNED NOT NULL,
@@ -35,6 +32,7 @@ PRIMARY KEY(distribution_id),
 FOREIGN KEY (source_id) REFERENCES source(source_id)
 );
 
+DROP TABLE IF EXISTS $tbl_country;
 CREATE TABLE $tbl_country (
 countryNameID INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
 countryName VARCHAR(100) DEFAULT NULL,
@@ -52,6 +50,41 @@ INDEX (countryNameStd),
 INDEX (isNewWorld)
 );
 
+DROP TABLE IF EXISTS state_province;
+CREATE TABLE state_province (
+state_province_id INT(11) UNSIGNED NOT NULL PRIMARY KEY, 
+country VARCHAR(100) DEFAULT NULL, 
+country_iso VARCHAR(5) DEFAULT NULL, 
+state_province VARCHAR(100) DEFAULT NULL, 
+state_province_ascii VARCHAR(100) DEFAULT NULL, 
+state_province_code VARCHAR(25) DEFAULT NULL, 
+state_province_code_unique VARCHAR(52) DEFAULT NULL,
+INDEX (country),
+INDEX (country_iso),
+INDEX (state_province),
+INDEX (state_province_ascii),
+INDEX (state_province_code),
+INDEX (state_province_code_unique)
+);
+
+DROP TABLE IF EXISTS state_province_name;
+CREATE TABLE state_province_name (
+state_province_name_id INT(11) UNSIGNED NOT NULL PRIMARY KEY, 
+state_province_name VARCHAR(100) DEFAULT NULL, 
+country_iso VARCHAR(5) DEFAULT NULL, 
+country VARCHAR(100) DEFAULT NULL, 
+state_province_id INT(11) UNSIGNED DEFAULT NULL, 
+state_province VARCHAR(100) DEFAULT NULL, 
+state_province_ascii VARCHAR(100) DEFAULT NULL,
+INDEX (state_province_name),
+INDEX (country_iso),
+INDEX (country),
+INDEX (state_province_id),
+INDEX (state_province),
+INDEX (state_province_ascii)
+);
+
+DROP TABLE IF EXISTS cultspp;
 CREATE TABLE cultspp (
 cultspp_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
 source_id INT(11) UNSIGNED NOT NULL,
@@ -120,7 +153,5 @@ ADD INDEX (county_parish)
 sql_execute_multiple($sql);
 echo $done;
 
+
 ?>
-
-
-

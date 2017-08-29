@@ -5,7 +5,7 @@
 // divisions of comprehensive checklists only.
 // This speeds up joins in susubsequent queries
 ///////////////////////////////////////////////////
-echo "  Creating table of comprehensive checklists...";
+echo "Creating table of comprehensive checklists...";
 $sql="
 DROP TABLE IF EXISTS cclist;
 

@@ -70,10 +70,43 @@ INDEX (is_country)
 sql_execute_multiple($sql);
 echo $done;
 
-echo "  fwi...";
+echo "  fwi_temp...";
 $sql="
-DROP TABLE IF EXISTS fwi;
-CREATE TABLE fwi (
+DROP TABLE IF EXISTS fwi_temp;
+CREATE TABLE fwi_temp (
+source_name VARCHAR(50) NOT NULL,
+country VARCHAR(50) NOT NULL,
+state_province VARCHAR(100) DEFAULT NULL,
+county_parish VARCHAR(100) DEFAULT NULL,
+family VARCHAR(50) DEFAULT NULL,
+genus VARCHAR(50) DEFAULT NULL,
+species VARCHAR(150) DEFAULT NULL,
+taxon VARCHAR(250) NOT NULL,
+taxon_rank VARCHAR(25) DEFAULT NULL,
+status_verbatim VARCHAR(50) DEFAULT NULL,
+native_status VARCHAR(50) DEFAULT NULL,
+cult_status VARCHAR(50) DEFAULT NULL,
+INDEX (source_name),
+INDEX (country),
+INDEX (state_province),
+INDEX (county_parish),
+INDEX (family),
+INDEX (genus),
+INDEX (species),
+INDEX (taxon),
+INDEX (taxon_rank),
+INDEX (status_verbatim),
+INDEX (native_status),
+INDEX (cult_status)
+)  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+";
+sql_execute_multiple($sql);
+echo $done;
+
+echo "  fwi_final...";
+$sql="
+DROP TABLE IF EXISTS fwi_final;
+CREATE TABLE fwi_final (
 id INTEGER(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 source_name VARCHAR(50) NOT NULL,
 country VARCHAR(50) NOT NULL,
@@ -84,6 +117,8 @@ genus VARCHAR(50) DEFAULT NULL,
 species VARCHAR(150) DEFAULT NULL,
 taxon VARCHAR(250) NOT NULL,
 taxon_rank VARCHAR(25) DEFAULT NULL,
+native_status_all VARCHAR(50) DEFAULT NULL,
+cult_status_all VARCHAR(50) DEFAULT NULL,
 native_status VARCHAR(50) DEFAULT NULL,
 cult_status VARCHAR(50) DEFAULT NULL,
 PRIMARY KEY(id),
@@ -97,7 +132,9 @@ INDEX (species),
 INDEX (taxon),
 INDEX (taxon_rank),
 INDEX (native_status),
-INDEX (cult_status)
+INDEX (cult_status),
+INDEX (native_status_all),
+INDEX (cult_status_all)
 )  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 ";
 sql_execute_multiple($sql);

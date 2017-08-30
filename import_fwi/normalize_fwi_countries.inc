@@ -8,18 +8,7 @@
 // two countries
 ///////////////////////////////////////////////
 
-echo "Normalizing country occurrences:\r\n";
-
-$sql="
-DROP TABLE IF EXISTS fwi_temp;
-CREATE TABLE fwi_temp LIKE fwi;
-ALTER TABLE fwi_temp DROP COLUMN id;
-ALTER TABLE fwi_temp 
-ADD COLUMN status_verbatim VARCHAR(50) DEFAULT NULL,
-ADD INDEX (status_verbatim)
-;
-";
-sql_execute_multiple($sql);
+echo "Normalizing country occurrences by region:\r\n";
 
 // Loop through each record of raw table
 $sql_region="
@@ -31,14 +20,12 @@ OR region IN ('hispaniola','virginIslands')
 ";
 $regions = mysql_query($sql_region);
 
-echo "  Processing regions:\r\n";
-
 // Process each region
 while ($row = mysql_fetch_assoc($regions)) {	
 	$region = $row["region"];
 	$region_col = $region;
 	$is_country = $row["is_country"];
-	echo "    $region...";
+	echo "  $region...";
 		
 	// Insert region_country combinations
 	$sql = "

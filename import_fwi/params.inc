@@ -70,6 +70,7 @@ $replace=true;
 // Names of files you will be importing
 $file_raw = "acevedo_WI_checklist.csv";
 //$file_raw = "acevedo_WI_checklist_test.csv";
+$file_regions_raw = 'wi_regions.csv';
 
 // Include path to file in name if not in same directory as this script
 //$datapath="import_".$source_name."/data/";	// Default path

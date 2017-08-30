@@ -26,8 +26,15 @@ include "fix_hybrid_x.inc";
 // separate taxon name from author and dump to taxon field
 include "detect_rank.inc";
 
-// Extract unique records to new table with regions in single column
-include "get_unique.inc";
+// Normalize the raw data
+include "normalize_fwi_regions.inc";
+include "normalize_fwi_countries.inc";
+
+// standardize status codes
+include "standardize_status.inc";
+
+// Insert unique values into main table
+include "unique_occurrences.inc";
 
 exit("Exiting...\r\n");
 

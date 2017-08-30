@@ -9,7 +9,12 @@
 
 echo "Deleting temporary tables...";
 $sql="
-DROP TABLE IF EXISTS $tbl_raw;
+DROP TABLE IF EXISTS fwi_raw;
+DROP TABLE IF EXISTS fwi_regions_raw;
+DROP TABLE IF EXISTS fwi_region_country;
+DROP TABLE IF EXISTS fwi_country;
+DROP TABLE IF EXISTS fwi_temp;
+DROP TABLE IF EXISTS fwi;
 ";
 sql_execute_multiple($sql);
 echo $done;	

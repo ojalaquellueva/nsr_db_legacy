@@ -89,6 +89,7 @@ if ($replace_db) {
 	include_once "create_nsr_db/populate_state_province.inc";
 	include_once "create_nsr_db/populate_state_province_name.inc";
 	include_once "create_nsr_db/state_province_std.inc";
+	include_once "create_nsr_db/fix_errors.inc";
 	include_once "create_nsr_db/make_cclist.inc";
 }
 

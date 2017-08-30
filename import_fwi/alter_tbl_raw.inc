@@ -10,7 +10,7 @@ echo "  Adding new columns and indexes...";
 // Add a primary key
 $sql="
 ALTER TABLE `$tbl_raw`
-ADD COLUMN id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ADD COLUMN id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST,
 ADD UNIQUE INDEX(id)
 ;
 ";

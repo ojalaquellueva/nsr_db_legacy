@@ -32,8 +32,22 @@ PRIMARY KEY(distribution_id),
 FOREIGN KEY (source_id) REFERENCES source(source_id)
 );
 
-DROP TABLE IF EXISTS $tbl_country;
-CREATE TABLE $tbl_country (
+DROP TABLE IF EXISTS country;
+CREATE TABLE country (
+country_id INT(11) UNSIGNED NOT NULL, 
+country VARCHAR(100) NOT NULL,
+country_iso VARCHAR(2) NOT NULL,
+country_iso_alpha3 VARCHAR(3) DEFAULT NULL,
+country_fips VARCHAR(50) DEFAULT NULL,
+PRIMARY KEY (country_id),
+INDEX (country),
+INDEX (country_iso),
+INDEX (country_iso_alpha3),
+INDEX (country_fips)
+);
+
+DROP TABLE IF EXISTS countryName;
+CREATE TABLE countryName (
 countryNameID INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
 countryName VARCHAR(100) DEFAULT NULL,
 countryID INT(11) UNSIGNED NOT NULL,

@@ -20,6 +20,5 @@ include "add_species.inc";
 include "add_genus.inc";
 include "add_family.inc";
 include "restore_nulls.inc";	// restore empty strings to NULL
-echo $done;
 
 ?>

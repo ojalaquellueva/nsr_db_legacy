@@ -1,26 +1,35 @@
 <?php
 
-///////////////////////////////////////////////
-// Normalizes taxon occurrences for regions
-// representing a single country, or a pair
-// of countries sharing the same island, or
-// very small sets of islands belonging to
-// two countries
-///////////////////////////////////////////////
+/////////////////////////////////////////////////////
+// Inserts explicit country x species combinations
+// where species marked as absent.
+// These can safely propagate downward from regions
+// to countries in regions.
+/////////////////////////////////////////////////////
 
-echo "Normalizing country occurrences by region:\r\n";
+// The following values treated as 'absent':
+$absent_vals="
+'absent',
+'absent?',
+'absent ?',
+'doubful',
+'doubtful',
+'dubious'
+";
 
-// Loop through each record of raw table
+echo "Inserting explicit absences by region:\r\n";
+
+// Get regions which are NOT single countries
 $sql_region="
 SELECT region, is_country 
 FROM fwi_regions_raw
-WHERE is_country=1 
-OR region IN ('hispaniola','virginIslands')
+WHERE is_country<>1 
+AND region NOT IN ('hispaniola','virginIslands')
 ;
 ";
 $regions = mysql_query($sql_region);
 
-// Process each region
+// Process each region, inserting only absences
 while ($row = mysql_fetch_assoc($regions)) {	
 	$region = $row["region"];
 	$region_col = $region;
@@ -42,7 +51,7 @@ while ($row = mysql_fetch_assoc($regions)) {
 	status_verbatim
 	)
 	SELECT DISTINCT
-	'$src',
+	'$src (explicit absence in region)',
 	b.country,
 	NULL,
 	NULL,
@@ -51,9 +60,10 @@ while ($row = mysql_fetch_assoc($regions)) {
 	TRIM(CONCAT_WS(' ',IFNULL(genus,''),IFNULL(epithet,''))),
 	taxon,
 	taxon_rank,
-	$region_col
+	'absent'
 	FROM fwi_raw a, fwi_region_country b 
 	WHERE b.region='$region'
+	AND TRIM(a.$region_col) IN ($absent_vals)
 	;
 	";
 

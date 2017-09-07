@@ -2,6 +2,10 @@ Political division lookup files
 
 Derived from custom BIEN import of geonames database in postgres (see separate documentation).
 
+country.csv:
+
+\COPY (SELECT country_id, country, iso, iso_alpha3, fips FROM country) TO '/tmp/country.csv' DELIMITER ',' CSV HEADER;
+
 countryNames.txt:
 
 

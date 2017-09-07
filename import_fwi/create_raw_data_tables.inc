@@ -157,7 +157,9 @@ DROP TABLE IF EXISTS fwi_region_country;
 CREATE TABLE fwi_region_country (
 region VARCHAR(15) DEFAULT NULL,
 country VARCHAR(50) DEFAULT NULL,
-UNIQUE INDEX region_country (region, country)
+UNIQUE INDEX region_country (region, country),
+INDEX (region),
+INDEX (country)
 )  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 ";
 sql_execute_multiple($sql);

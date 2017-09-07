@@ -85,7 +85,9 @@ if ($replace_db) {
 	// Replace core tables
 	include_once "create_nsr_db/params.inc";
 	include_once "create_nsr_db/create_tables.inc";
+	include_once "create_nsr_db/populate_country.inc";
 	include_once "create_nsr_db/populate_countryName.inc";
+	include_once "create_nsr_db/update_country_id.inc";
 	include_once "create_nsr_db/populate_state_province.inc";
 	include_once "create_nsr_db/populate_state_province_name.inc";
 	include_once "create_nsr_db/state_province_std.inc";

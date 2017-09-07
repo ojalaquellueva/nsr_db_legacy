@@ -28,7 +28,12 @@ include "detect_rank.inc";
 
 // Normalize the raw data
 include "normalize_fwi_regions.inc";
-include "normalize_fwi_countries.inc";
+
+// Insert the occurrences
+include "insert_country_occurrences.inc";
+include "insert_explicit_absences.inc";
+include "insert_explicit_introduced.inc";
+include "insert_implied_absences.inc";
 
 // standardize status codes
 include "standardize_status.inc";
@@ -36,7 +41,7 @@ include "standardize_status.inc";
 // Insert unique values into main table
 include "unique_occurrences.inc";
 
-exit("Exiting...\r\n");
+//exit("Exiting...\r\n");
 
 // load data from combined raw data table to standardized staging table
 include "create_distribution_staging.inc";

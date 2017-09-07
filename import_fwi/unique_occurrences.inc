@@ -25,7 +25,7 @@ native_status_all,
 cult_status_all
 )
 SELECT 
-source_name,
+'$src',
 country, 
 family, 
 genus, 
@@ -36,7 +36,7 @@ GROUP_CONCAT(native_status SEPARATOR ', '),
 GROUP_CONCAT(cult_status SEPARATOR ', ')
 FROM (
 SELECT DISTINCT
-source_name,
+'$src',
 country, 
 family, 
 genus, 

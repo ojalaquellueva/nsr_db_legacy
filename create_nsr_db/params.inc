@@ -3,7 +3,8 @@
 $tbl_country="countryName";
 
 // Data files for political division tables
-$file_country="countryNames.txt";
+$file_country="country.csv";
+$file_country_name="countryNames.txt";
 $file_state_province="stateProvince.csv";
 $file_state_province_name="stateProvinceName.csv";
 

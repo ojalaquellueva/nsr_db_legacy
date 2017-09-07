@@ -42,6 +42,26 @@ ADD INDEX (include)
 ;
 ";
 sql_execute_multiple($sql);
+
+// Add remaining indexes
+$sql="
+ALTER TABLE `$tbl_raw`
+ADD INDEX (family),
+ADD INDEX (genus),
+ADD INDEX (epithet),
+ADD INDEX (westIndies),
+ADD INDEX (greaterAntilles),
+ADD INDEX (jamaica),
+ADD INDEX (cuba),
+ADD INDEX (caymanIsland),
+ADD INDEX (hispaniola),
+ADD INDEX (puertoRico),
+ADD INDEX (virginIslands),
+ADD INDEX (bahamas),
+ADD INDEX (lesserAntillles)
+;
+";
+sql_execute_multiple($sql);
 echo $done;
 
 ?>

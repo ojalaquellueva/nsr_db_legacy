@@ -4,9 +4,7 @@
 // Load raw distribution data to staging table
 ///////////////////////////////////////////////////////
 
-echo "Loading raw data to staging table distribution_staging:\r\n";
-
-echo "  Inserting unique records...";
+echo "Loading raw data to staging table distribution_staging...";
 $sql="
 INSERT INTO distribution_staging (
 source_name,
@@ -27,7 +25,7 @@ taxon,
 taxon_rank,
 native_status,
 cult_status
-FROM fwi_final
+FROM fwi_raw_final
 ;
 ";
 sql_execute_multiple($sql);

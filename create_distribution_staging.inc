@@ -21,6 +21,7 @@ species VARCHAR(150) DEFAULT NULL,
 taxon VARCHAR(250) NOT NULL,
 taxon_rank VARCHAR(25) DEFAULT NULL,
 native_status VARCHAR(50) DEFAULT NULL,
+native_status_details VARCHAR(100) DEFAULT NULL, 
 cult_status VARCHAR(50) DEFAULT NULL,
 PRIMARY KEY(id),
 INDEX (source_name),
@@ -33,6 +34,7 @@ INDEX (species),
 INDEX (taxon),
 INDEX (taxon_rank),
 INDEX (native_status),
+INDEX (native_status_details),
 INDEX (cult_status)
 );
 ";

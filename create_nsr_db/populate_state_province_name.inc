@@ -4,7 +4,7 @@
 // Populates table state_province
 //////////////////////////////////////////
 
-echo " state_province_name...";
+echo "  state_province_name...";
 $sql="
 LOAD DATA $local INFILE '$datapath$file_state_province_name' 
 INTO TABLE state_province_name 

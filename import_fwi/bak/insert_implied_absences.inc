@@ -20,7 +20,7 @@ echo "Inserting implied absences due to endemism in region:\r\n";
 
 // Get regions which are NOT single countries
 $sql_region="
-SELECT region
+SELECT region, is_country 
 FROM fwi_regions_raw
 WHERE is_country<>1 
 AND region NOT IN ('hispaniola','virginIslands')
@@ -31,10 +31,12 @@ $regions = mysql_query($sql_region);
 // Process each region, inserting only absences
 while ($row = mysql_fetch_assoc($regions)) {	
 	$region = $row["region"];
+	$region_col = $region;
 	echo "  $region...";
 		
-	$sql="
-	INSERT INTO fwi_raw_final (
+	// Insert region_country combinations
+	$sql = "
+	INSERT INTO fwi_temp (
 	source_name,
 	country,
 	state_province,
@@ -44,32 +46,32 @@ while ($row = mysql_fetch_assoc($regions)) {
 	species,
 	taxon,
 	taxon_rank,
-	native_status,
-	native_status_details,
-	cult_status
+	status_verbatim
 	)
-	SELECT
-	CONCAT('$src',' (endemic to region ','$region', ')'),
+	SELECT DISTINCT
+	'$src (implied absence due to endemism)',
 	b.country,
 	NULL,
 	NULL,
 	family,
 	genus,
-	species,
+	TRIM(CONCAT_WS(' ',IFNULL(genus,''),IFNULL(epithet,''))),
 	taxon,
 	taxon_rank,
-	'absent',
-	'Endemic elsewhere to region $region',
-	NULL
-	FROM fwi_raw_temp a, country b
-	LEFT JOIN fwi_region_country c
+	'absent'
+	FROM fwi_raw a, country b 
+	LEFT JOIN (
+	SELECT country, region
+	FROM fwi_region_country
+	WHERE region='$region'
+	) c
 	ON b.country=c.country
-	WHERE b.country NOT IN ($cclist_countries)
-	AND a.native_status='endemic'
-	AND a.region='$region'
-	AND c.country IS NULL
+	WHERE c.country IS NULL
+	AND TRIM(a.$region_col) LIKE '%endemic%'
 	;
 	";
+
+	// add record to new table
 	sql_execute_multiple($sql);	
 	echo $done;
 }

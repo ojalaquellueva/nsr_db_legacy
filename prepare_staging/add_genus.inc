@@ -10,8 +10,7 @@ echo "    Missing genera...";
 // Populate genus column...";
 $sql="
 UPDATE distribution_staging
-SET genus=TRIM(strSplit(taxon,' ',1)
-)
+SET genus=TRIM(strSplit(taxon,' ',1))
 ;
 ";
 sql_execute_multiple($sql);

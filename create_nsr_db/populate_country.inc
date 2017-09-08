@@ -5,7 +5,7 @@
 // table country from geonames db
 //////////////////////////////////////////
 
-echo " country...";
+echo "  country...";
 $sql="
 LOAD DATA $local INFILE '$datapath$file_country' 
 INTO TABLE country 

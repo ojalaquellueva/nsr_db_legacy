@@ -26,8 +26,9 @@ taxon VARCHAR(150) NOT NULL,
 country VARCHAR(50) NOT NULL,
 state_province VARCHAR(100) DEFAULT NULL,
 county_parish VARCHAR(100) DEFAULT NULL,
-native_status VARCHAR(25) DEFAULT NULL,
-cult_status VARCHAR(25) DEFAULT NULL,
+native_status VARCHAR(50) DEFAULT NULL,
+native_status_details VARCHAR(100) DEFAULT NULL, 
+cult_status VARCHAR(50) DEFAULT NULL,
 PRIMARY KEY(distribution_id),
 FOREIGN KEY (source_id) REFERENCES source(source_id)
 );
@@ -45,6 +46,24 @@ INDEX (country_iso),
 INDEX (country_iso_alpha3),
 INDEX (country_fips)
 );
+
+-- poldiv type is also the name of the table
+-- to which FK poldiv_id points
+DROP TABLE IF EXISTS poldiv_source;
+CREATE TABLE poldiv_source (
+poldiv_source_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,  
+poldiv_id INT(11) UNSIGNED NOT NULL, 
+poldiv_type enum('country','state_province','county_parish') NOT NULL, 
+source_id INT(11) UNSIGNED NOT NULL, 
+checklist_type VARCHAR(50) DEFAULT NULL,
+checklist_details VARCHAR(250) DEFAULT NULL,
+PRIMARY KEY (poldiv_source_id),
+INDEX (poldiv_id),
+INDEX (poldiv_type),
+INDEX (source_id),
+INDEX (checklist_type)
+);
+
 
 DROP TABLE IF EXISTS countryName;
 CREATE TABLE countryName (

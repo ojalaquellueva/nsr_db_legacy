@@ -4,7 +4,7 @@
 // Updates countryID in table countryName
 ///////////////////////////////////////////////////
 
-echo "Updating country_id in table countryName...";
+echo "  Updating country_id in table countryName...";
 $sql="
 UPDATE countryName
 SET countryID=NULL
@@ -15,5 +15,6 @@ SET countryID=country_id
 ;
 ";
 sql_execute_multiple($sql);	
+echo $done;
 
 ?>

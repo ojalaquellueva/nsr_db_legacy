@@ -9,6 +9,9 @@ echo "Loading staging table to core db:\r\n";
 // Update source information and get sourceID (needed for later steps)
 include 'load_source.inc';
 
+// Load metadata on checklists
+include 'load_poldiv_source.inc';
+
 // Delete previous records
 // Tag records linked ONLY to current source, then delete those records
 if ($replace===true) {

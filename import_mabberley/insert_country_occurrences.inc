@@ -14,7 +14,6 @@ species,
 taxon,
 taxon_rank,
 native_status,
-native_status_details,
 cult_status
 )
 SELECT
@@ -28,7 +27,6 @@ species,
 taxon,
 taxon_rank,
 native_status,
-'',
 cult_status
 FROM fwi_raw_temp
 WHERE country IS NOT NULL

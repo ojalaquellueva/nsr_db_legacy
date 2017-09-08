@@ -6,7 +6,7 @@
 
 echo "Populating political division tables:\r\n";
 
-echo " countryName...";
+echo "  countryName...";
 $sql="
 LOAD DATA $local INFILE '$datapath$file_country_name' 
 INTO TABLE $tbl_country 

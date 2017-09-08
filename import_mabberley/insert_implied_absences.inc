@@ -45,7 +45,6 @@ while ($row = mysql_fetch_assoc($regions)) {
 	taxon,
 	taxon_rank,
 	native_status,
-	native_status_details,
 	cult_status
 	)
 	SELECT
@@ -58,9 +57,8 @@ while ($row = mysql_fetch_assoc($regions)) {
 	species,
 	taxon,
 	taxon_rank,
-	'absent',
-	'Endemic elsewhere to region $region',
-	NULL
+	native_status,
+	'absent (endemic elsewhere)'
 	FROM fwi_raw_temp a, country b
 	LEFT JOIN fwi_region_country c
 	ON b.country=c.country

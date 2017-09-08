@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS temp_missing_genus
 CREATE TABLE temp_missing_genus
 SELECT DISTINCT country, state_province, county_parish, genus
 FROM distribution_staging
-WHERE native_status<>'introduced' AND taxon_rank<>'hybrid'
+WHERE native_status IN ('native','endemic') AND taxon_rank<>'hybrid'
 ;
 ALTER TABLE temp_missing_genus
 ADD INDEX (country),
@@ -65,7 +65,7 @@ state_province,
 county_parish,
 genus,
 'genus',
-'unknown',
+'native',
 'unknown',
 genus
 FROM temp_missing_genus

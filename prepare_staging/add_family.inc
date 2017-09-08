@@ -14,6 +14,7 @@ $sql_genera="
 SELECT DISTINCT genus
 FROM distribution_staging
 WHERE genus IS NOT NULL AND genus<>''
+AND native_status IN ('native','endemic') 
 ;
 ";
 $result = mysql_query($sql_genera);
@@ -91,7 +92,7 @@ state_province,
 county_parish,
 family,
 'family',
-'unknown',
+'native',
 'unknown',
 family
 FROM temp_missing_family

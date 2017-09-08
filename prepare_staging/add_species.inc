@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS temp_missing_species
 CREATE TABLE temp_missing_species
 SELECT DISTINCT country, state_province, county_parish, species
 FROM distribution_staging
-WHERE native_status<>'introduced' AND taxon_rank<>'hybrid'
+WHERE native_status IN ('native','endemic') AND taxon_rank<>'hybrid'
 AND taxon LIKE '% % %';
 ;
 ALTER TABLE temp_missing_species
@@ -75,7 +75,7 @@ state_province,
 county_parish,
 species,
 'species',
-'unknown',
+'native',
 'unknown',
 species
 FROM temp_missing_species

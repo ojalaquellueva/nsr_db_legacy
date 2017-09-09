@@ -67,7 +67,7 @@ if (!$dbh) die("\r\nCould not connect to database!\r\n");
 ////////////////////////////////////////////////////////////
 // Generate new empty database
 ////////////////////////////////////////////////////////////
-/*
+
 if ($replace_db) {
 	echo "\r\n#############################################\r\n";
 	echo "Creating new database:\r\n\r\n";	
@@ -94,7 +94,7 @@ if ($replace_db) {
 	include_once "create_nsr_db/fix_errors.inc";
 	include_once "create_nsr_db/make_cclist.inc";
 }
-*/
+
 // Re-connect to database, in case previous step skipped
 $sql="USE `".$DB."`;";
 sql_execute_multiple($sql);

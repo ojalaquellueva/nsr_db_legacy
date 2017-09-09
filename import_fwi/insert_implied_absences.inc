@@ -59,7 +59,7 @@ while ($row = mysql_fetch_assoc($regions)) {
 	taxon,
 	taxon_rank,
 	'absent',
-	'Endemic elsewhere to region $region',
+	'Endemic elsewhere in region $region',
 	NULL
 	FROM fwi_raw_temp a, country b
 	LEFT JOIN fwi_region_country c

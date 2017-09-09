@@ -10,41 +10,31 @@
 // MUST BE UNIQUE
 // NO SPACES
 // MAX 50 characters
-$source_name="fwi";
+$source_name="mab";
 
 // Longer, more descriptive name for source
 // Can have spaces; not used in any scripts
 // after adding to table `source`
-$source_name_full="Flora of the West Indies";
+$source_name_full="Endemics genera and families from Mabberley's The Plaht Book";
 
 // Primary url for this source (optional)
-$source_url="http://botany.si.edu/antilles/westindies/";	
+$source_url="";	
 
 // Person who provided access to source (optional)
-$source_contact_name="Pedro Acevedo-Rodriguez";
-$source_contact_email="acevedop@si.edu";
+$source_contact_name="";
+$source_contact_email="";
 
 // Date accessed
 // yyyy-mm-dd format
-$date_accessed="2015-09-16";
+$date_accessed="2017-09-05";
 
 // Short list of regions covered by this source, to 250 characters
-$focal_regions="Greater Antilles, Lesser Antilles and the Bahamas";
+$focal_regions="Global";
 
 // List of countries for which this source provides comprehensive
 // checklists. Spellings MUST agree with spellings in table country.
 // Leave empty if none.
-$cclist_countries="
-'British Virgin Islands',
-'U.S. Virgin Islands',
-'Cayman Islands',
-'Bahamas',
-'Cuba',
-'Dominican Republic',
-'Haiti',
-'Jamaica',
-'Puerto Rico'
-"
+$cclist_countries=""
 ;
 
 // List of countries for which this source provides an explicit
@@ -59,7 +49,7 @@ $pclist_countries="";
 // 1 = comprehensive. Includes all species from focal region in focal taxon. Absence from 
 //		list may indicates non-native species
 // 0 = selective, not comprehensive. Not all taxa in region(s) include, absence not interpretable
-$is_comprehensive=1;
+$is_comprehensive=0;
 
 // Regional scope (political division level) of this source. For comprehensive sources, 
 // lower political divisions will also be treated as comprehensive, but but higher 
@@ -92,9 +82,8 @@ $replace=true;
 // Raw data file parameters
 //////////////////////////////////////////////////
 // Names of files you will be importing
-$file_raw = "acevedo_WI_checklist.csv";
+$file_raw = "Mabberly_endemism_data.csv";
 //$file_raw = "acevedo_WI_checklist_test.csv";
-$file_regions_raw = 'wi_regions.csv';
 
 // Include path to file in name if not in same directory as this script
 //$datapath="import_".$source_name."/data/";	// Default path

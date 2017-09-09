@@ -10,6 +10,7 @@ country,
 state_province,
 county_parish,
 native_status,
+native_status_details,
 cult_status
 )
 SELECT
@@ -20,6 +21,7 @@ country,
 state_province,
 county_parish,
 native_status,
+native_status_details,
 cult_status
 FROM distribution_staging
 ;

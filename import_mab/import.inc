@@ -18,18 +18,4 @@ sql_execute_multiple($sql);
 if (!(empty_string_to_null($tbl_raw))) die("Error\r\n.");
 echo $done;
 
-echo "  Importing file $file_regions_raw to table `fwi_regions_raw`...";
-$sql = "
-LOAD DATA $local INFILE '$datapath$file_regions_raw' 
-INTO TABLE fwi_regions_raw 
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '\"'
-LINES TERMINATED BY '\r' 
-IGNORE 1 LINES
-;
-";
-sql_execute_multiple($sql);
-if (!(empty_string_to_null($tbl_raw))) die("Error\r\n.");
-echo $done;
-
 ?>

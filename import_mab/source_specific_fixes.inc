@@ -21,6 +21,20 @@ WHERE taxon=''
 sql_execute_multiple($sql);
 echo $done;
 
+echo "  Removing cf and aff...";
+$sql="
+UPDATE `$tbl_raw`
+SET taxon=REPLACE(taxon,' cf.','')
+WHERE taxon LIKE '% cf.%'
+;
+UPDATE `$tbl_raw`
+SET taxon=REPLACE(taxon,' aff.','')
+WHERE taxon LIKE '% aff.%'
+;
+";
+sql_execute_multiple($sql);
+echo $done;
+
 // Fix entries for Musa and Eucalyptus
 echo "  Fixing entries for Musa and Eucalyptus...";
 $sql="

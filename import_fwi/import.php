@@ -6,7 +6,7 @@ include "params.inc";	// source-specific parameters
 //////////////////////////////////////////
 // Import raw data file 
 //////////////////////////////////////////
-/*
+
 // create empty import table
 // These must be identical in structure to raw data file
 include "create_raw_data_tables.inc";
@@ -55,7 +55,7 @@ include "insert_implied_absences.inc";
 //////////////////////////////////////////
 // Load to staging tables 
 //////////////////////////////////////////
-*/
+
 // load data from combined raw data table to standardized staging table
 include "create_distribution_staging.inc";
 include "load_distribution_staging.inc";

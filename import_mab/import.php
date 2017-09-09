@@ -6,13 +6,15 @@ include "params.inc";	// source-specific parameters
 //////////////////////////////////////////
 // Import raw data file 
 //////////////////////////////////////////
-/*
+
 // create empty import table
 // These must be identical in structure to raw data file
 include "create_raw_data_tables.inc";
 
 // import raw data file
 include "import.inc";
+
+exit("\r\nExiting...");
 
 //////////////////////////////////////////
 // Standardize and normalize 
@@ -47,7 +49,7 @@ include "unique_occurrences.inc";
 // Insert the occurrences
 include "insert_country_occurrences.inc";
 
-//exit("\r\nExiting...");
+
 
 include "insert_explicit_absent_introduced.inc";
 include "insert_implied_absences.inc";
@@ -55,7 +57,7 @@ include "insert_implied_absences.inc";
 //////////////////////////////////////////
 // Load to staging tables 
 //////////////////////////////////////////
-*/
+
 // load data from combined raw data table to standardized staging table
 include "create_distribution_staging.inc";
 include "load_distribution_staging.inc";

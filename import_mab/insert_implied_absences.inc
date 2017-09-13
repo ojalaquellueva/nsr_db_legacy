@@ -16,60 +16,41 @@
 // as 'native' to multi-country regions.
 /////////////////////////////////////////////////////
 
-echo "Inserting implied absences due to endemism in region:\r\n";
+if ($cclist_countries=="") {
+	$cclist_notin_where="1";
+} else {
+	$cclist_notin_where="b.country NOT IN ($cclist_countries)";
+}
 
-// Get regions which are NOT single countries
-$sql_region="
-SELECT region
-FROM fwi_regions_raw
-WHERE is_country<>1 
-AND region NOT IN ('hispaniola','virginIslands')
+echo "Inserting implied absences due to endemism in checklist countries...";		
+$sql="
+INSERT INTO $tbl_raw (
+source_name,
+country,
+taxon,
+taxon_rank,
+native_status,
+inferred
+)
+SELECT DISTINCT
+CONCAT('$src',' (implied absence due to endemism elsewhere)'),
+b.country,
+taxon,
+taxon_rank,
+'absent',
+1
+FROM $tbl_raw a, country b
+LEFT JOIN (
+SELECT DISTINCT country FROM $tbl_raw
+) c
+ON b.country=c.country
+WHERE $cclist_notin_where
+AND a.native_status='endemic'
+AND c.country IS NULL
 ;
 ";
-$regions = mysql_query($sql_region);
+sql_execute_multiple($sql);	
+echo $done;
 
-// Process each region, inserting only absences
-while ($row = mysql_fetch_assoc($regions)) {	
-	$region = $row["region"];
-	echo "  $region...";
-		
-	$sql="
-	INSERT INTO fwi_raw_final (
-	source_name,
-	country,
-	state_province,
-	county_parish,
-	family,
-	genus,
-	species,
-	taxon,
-	taxon_rank,
-	native_status,
-	cult_status
-	)
-	SELECT
-	CONCAT('$src',' (endemic to region ','$region', ')'),
-	b.country,
-	NULL,
-	NULL,
-	family,
-	genus,
-	species,
-	taxon,
-	taxon_rank,
-	native_status,
-	'absent (endemic elsewhere)'
-	FROM fwi_raw_temp a, country b
-	LEFT JOIN fwi_region_country c
-	ON b.country=c.country
-	WHERE b.country NOT IN ($cclist_countries)
-	AND a.native_status='endemic'
-	AND a.region='$region'
-	AND c.country IS NULL
-	;
-	";
-	sql_execute_multiple($sql);	
-	echo $done;
-}
 
 ?>

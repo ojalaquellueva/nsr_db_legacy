@@ -54,6 +54,7 @@ DROP TABLE IF EXISTS poldiv_source;
 CREATE TABLE poldiv_source (
 poldiv_source_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,  
 poldiv_id INT(11) UNSIGNED NOT NULL, 
+poldiv_name VARCHAR(100) NOT NULL,
 poldiv_type enum('country','state_province','county_parish') NOT NULL, 
 source_id INT(11) UNSIGNED NOT NULL, 
 checklist_type VARCHAR(50) DEFAULT NULL,
@@ -61,6 +62,7 @@ checklist_details VARCHAR(250) DEFAULT NULL,
 PRIMARY KEY (poldiv_source_id),
 INDEX (poldiv_id),
 INDEX (poldiv_type),
+INDEX (poldiv_name),
 INDEX (source_id),
 INDEX (checklist_type)
 );

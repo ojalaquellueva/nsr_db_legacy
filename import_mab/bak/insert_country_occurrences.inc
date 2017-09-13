@@ -1,13 +1,5 @@
 <?php
 
-///////////////////////////////////////////////
-// Normalizes taxon occurrences for regions
-// representing a single country, or a pair
-// of countries sharing the same island, or
-// very small sets of islands belonging to
-// two countries
-///////////////////////////////////////////////
-
 echo "Inserting comprehensive country checklists...";
 
 $sql="

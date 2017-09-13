@@ -16,20 +16,28 @@ ADD UNIQUE INDEX(id)
 ";
 sql_execute_multiple($sql);
 
-// Add taxon field
+// Add source_name
 $sql="
 ALTER TABLE `$tbl_raw`
-ADD COLUMN taxon VARCHAR(250) DEFAULT NULL AFTER family,
-ADD INDEX (taxon)
+ADD COLUMN source_name VARCHAR(100) DEFAULT '$src' AFTER id
 ;
 ";
 sql_execute_multiple($sql);
 
-// Add taxon rank field
+// Add native_status
 $sql="
 ALTER TABLE `$tbl_raw`
-ADD COLUMN taxon_rank VARCHAR(25) DEFAULT NULL AFTER taxon,
-ADD INDEX (taxon_rank)
+ADD COLUMN native_status VARCHAR(100) DEFAULT 'endemic' AFTER taxon_rank
+;
+";
+sql_execute_multiple($sql);
+
+// Adding column inferred (0,1)
+// 0=explicit, in original raw data
+// 1=inferred, added due to endemic in raw data
+$sql="
+ALTER TABLE `$tbl_raw`
+ADD COLUMN inferred INT(1) DEFAULT 0 AFTER native_status
 ;
 ";
 sql_execute_multiple($sql);
@@ -37,8 +45,7 @@ sql_execute_multiple($sql);
 // Add include field
 $sql="
 ALTER TABLE `$tbl_raw`
-ADD COLUMN include INT(1) DEFAULT 1,
-ADD INDEX (include)
+ADD COLUMN include INT(1) DEFAULT 1
 ;
 ";
 sql_execute_multiple($sql);
@@ -46,19 +53,13 @@ sql_execute_multiple($sql);
 // Add remaining indexes
 $sql="
 ALTER TABLE `$tbl_raw`
-ADD INDEX (family),
-ADD INDEX (genus),
-ADD INDEX (epithet),
-ADD INDEX (westIndies),
-ADD INDEX (greaterAntilles),
-ADD INDEX (jamaica),
-ADD INDEX (cuba),
-ADD INDEX (caymanIsland),
-ADD INDEX (hispaniola),
-ADD INDEX (puertoRico),
-ADD INDEX (virginIslands),
-ADD INDEX (bahamas),
-ADD INDEX (lesserAntillles)
+ADD INDEX (source_name),
+ADD INDEX (country),
+ADD INDEX (inferred),
+ADD INDEX (taxon),
+ADD INDEX (taxon_rank),
+ADD INDEX (native_status),
+ADD INDEX (include)
 ;
 ";
 sql_execute_multiple($sql);

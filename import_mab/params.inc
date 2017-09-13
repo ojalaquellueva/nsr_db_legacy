@@ -15,10 +15,13 @@ $source_name="mab";
 // Longer, more descriptive name for source
 // Can have spaces; not used in any scripts
 // after adding to table `source`
-$source_name_full="Endemics genera and families from Mabberley's The Plaht Book";
+$source_name_full="Endemic genera and families from Mabberley";
 
 // Primary url for this source (optional)
 $source_url="";	
+
+// bibtext formatted citation for thsi source
+$source_citation='\"@book{mabberley2008mabberley,title={Mabberleys plant-book: a portable dictionary of plants, their classifications and uses.},author={Mabberley, David John and others},number={Ed. 3},year={2008},publisher={Cambridge University Press}}\"';
 
 // Person who provided access to source (optional)
 $source_contact_name="";
@@ -106,7 +109,7 @@ $fields_terminated_by = " FIELDS TERMINATED BY ',' ";
 //$fields_terminated_by = " FIELDS TERMINATED BY '\t' ";
 $optionally_enclosed_by = " OPTIONALLY ENCLOSED BY '\"' ";  // use if text surrounded by quotes
 //$optionally_enclosed_by = "";
-$lines_terminated_by = " LINES TERMINATED BY '\r' ";
+$lines_terminated_by = " LINES TERMINATED BY '\r\n' ";
 $ignore_lines = " IGNORE 1 LINES ";	// Ignore header line?
 
 ////////////////////////////////////////////////////////////////////////////////////

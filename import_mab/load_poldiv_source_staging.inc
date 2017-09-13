@@ -6,30 +6,21 @@
 
 echo "Loading checklist metadata to table poldiv_source_staging:\r\n";
 
-echo "  Loading comprehensive country checklists...";
-$sql="
-INSERT INTO poldiv_source_staging (
-poldiv_id, 
-poldiv_type, 
-source_name, 
-checklist_type,
-checklist_details
-)
-SELECT DISTINCT
-country_id, 
-'country', 
-'$src', 
-'comprehensive',
-'From Flora of the West Indies'
-FROM country
-WHERE country IN ($cclist_countries)
-;
-";
-sql_execute_multiple($sql);
-echo $done;
+if ($cclist_countries=="") {
+	$cclist_notin_where="1";
+} else {
+	$cclist_notin_where="country NOT IN ($cclist_countries)";
+}
 
-echo "  Loading explicit partial country checklists...";
-if (!$pclist_countries=='') {
+if ($pclist_countries=="") {
+	$pclist_notin_where="1";
+} else {
+	$pclist_notin_where="country NOT IN ($pclist_countries)";
+}
+
+
+echo "  Loading comprehensive country checklists...";
+if (!$cclist_countries=='') {
 	$sql="
 	INSERT INTO poldiv_source_staging (
 	poldiv_id, 
@@ -42,23 +33,19 @@ if (!$pclist_countries=='') {
 	country_id, 
 	'country', 
 	'$src', 
-	'partial',
-	'Partial checklist from Flora of the West Indies'
+	'comprehensive',
+	'$source_name_full'
 	FROM country
-	WHERE country IN ($pclist_countries)
+	WHERE country IN ($cclist_countries)
 	;
 	";
 	sql_execute_multiple($sql);
-}
-echo $done;
-
-echo "  Loading inferred-by-endemisim partial country checklists...";
-if ($pclist_countries=="") {
-	$pclist_where="1";
+	echo $done;
 } else {
-	$pclist_where="country NOT IN ($pclist_countries)";
+	echo "nothing to add\r\n";
 }
 
+echo "  Loading explicit partial country checklists...";
 $sql="
 INSERT INTO poldiv_source_staging (
 poldiv_id, 
@@ -68,18 +55,45 @@ checklist_type,
 checklist_details
 )
 SELECT DISTINCT
-country_id, 
+a.country_id, 
 'country', 
 '$src', 
 'partial',
-'Introduced species inferred from endemics in Flora of the West Indies'
-FROM country a JOIN distribution_staging b
+'$source_name_full'
+FROM country a JOIN $tbl_raw b 
 ON a.country=b.country
-WHERE a.country NOT IN ($cclist_countries)
-AND $pclist_where
+WHERE $cclist_notin_where
+AND inferred=0
 ;
 ";
 sql_execute_multiple($sql);
 echo $done;
+
+
+echo "  Loading inferred-by-endemisim partial country checklists...";
+$sql="
+INSERT INTO poldiv_source_staging (
+poldiv_id, 
+poldiv_type, 
+source_name, 
+checklist_type,
+checklist_details
+)
+SELECT DISTINCT
+a.country_id, 
+'country', 
+'$src', 
+'partial',
+'Introduced species inferred from endemics in source $src'
+FROM country a JOIN $tbl_raw b 
+ON a.country=b.country
+WHERE $cclist_notin_where
+AND $pclist_notin_where
+AND inferred=1
+;
+";
+sql_execute_multiple($sql);
+echo $done;
+
 
 ?>

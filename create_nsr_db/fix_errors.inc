@@ -6,7 +6,7 @@
 
 echo "Fixing errors in political division tables:\r\n";
 
-echo " country...";
+echo "  country...";
 $sql="
 UPDATE countryName
 SET countryNameStd='Aland Islands'
@@ -71,7 +71,7 @@ sql_execute_multiple($sql);
 echo $done;
 
 
-echo " state_province...";
+echo "  state_province...";
 $sql="
 UPDATE state_province
 SET 
@@ -98,7 +98,7 @@ AND state_province_ascii='Estado de Coahuila de Zaragoza'
 sql_execute_multiple($sql);
 echo $done;
 
-echo " state_province_name...";
+echo "  state_province_name...";
 $sql="
 UPDATE state_province_name
 SET 

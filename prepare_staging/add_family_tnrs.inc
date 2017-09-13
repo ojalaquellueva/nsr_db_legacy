@@ -3,61 +3,50 @@
 ////////////////////////////////////////////////////////////
 // Adds missing (parent) family to country list where 
 // record for genus is present but family is not
-// This version requires table genus_family in separate
-// MySQL database gf_lookup. 
+// This version uses TNRS api to look up families. SLOW!
 ////////////////////////////////////////////////////////////
 
-echo "    Missing families:\r\n";
+echo "    Missing families...";
 
-echo "      Looking up using database gf_lookup...";
-$sql="
-UPDATE distribution_staging a 
-JOIN gf_lookup.genus_family b
-ON a.genus=b.genus
-SET a.family=b.family
-WHERE b.isAccepted=1
+// Get APGIII family from TNRS lookup for each genus
+$url_tnrs_base='http://tnrs.iplantc.org/tnrsm-svc/matchNames?retrieve=best&names=';
+
+$sql_genera="
+SELECT DISTINCT genus
+FROM distribution_staging
+WHERE genus IS NOT NULL AND genus<>''
+AND native_status IN ('native','endemic') 
 ;
 ";
-sql_execute_multiple($sql);
-echo $done;
+$result = mysql_query($sql_genera);
+$totgen = mysql_num_rows($result);
+$currgen = 0;
 
-echo "      Looking up using tnrs database...";
-$sql="
--- Using tnrs, source tropicos
-UPDATE distribution_staging a 
-JOIN (
-SELECT DISTINCT family, scientificName AS genus 
-FROM tnrs4.name a join tnrs4.higherClassification b 
-ON a.nameID=b.nameID 
-JOIN tnrs4.synonym c ON a.nameID=c.nameID 
-WHERE classificationSourceID=4 
-AND nameRank='genus' 
-AND family IS NOT NULL 
-AND acceptance in ('Accepted')
-) AS b
-ON a.genus=b.genus
-SET a.family=b.family
-WHERE a.family IS NULL
-;
--- As above, all names instead of accepted
-UPDATE distribution_staging a 
-JOIN (
-SELECT DISTINCT family, scientificName AS genus 
-FROM tnrs4.name a join tnrs4.higherClassification b 
-ON a.nameID=b.nameID 
-WHERE classificationSourceID=4 
-AND nameRank='genus' 
-AND family IS NOT NULL 
-) AS b
-ON a.genus=b.genus
-SET a.family=b.family
-WHERE a.family IS NULL
-;
-";
-sql_execute_multiple($sql);
-echo $done;
+echo "performing TNRS lookups...";
+while ($row = mysql_fetch_assoc($result)) {
+	$gen = $row["genus"];
+	$fam = '';
+	$currgen++;
+	
+	echo "\r    Missing families...performing TNRS lookups...genus $currgen of $totgen";
+	
+	$name=urlencode($gen);
+	$url_tnrs=$url_tnrs_base.$name;	
+	$json=file_get_contents($url_tnrs);
+	$tnrs_results = json_decode($json,true);
+	$fam = $tnrs_results['items'][0]['family'];	
+	
+	if ($fam<>'') {
+		$sql_update_family = "
+			UPDATE distribution_staging
+			SET family='$fam'
+			WHERE genus='$gen';
+		";
+		sql_execute_multiple($sql_update_family);
+	}
+}
 
-echo "      Updating family + poldiv combinations...";
+echo "updating...";
 
 // Create temporary table of missing poldiv+family combinations
 $sql="

@@ -23,7 +23,6 @@ if ($records>1) {
 			source_name,
 			source_name_full,
 			source_url,
-			source_citation,
 			source_contact_name,
 			source_contact_email,
 			date_accessed,
@@ -35,7 +34,6 @@ if ($records>1) {
 			'$source_name',
 			'$source_name_full',
 			'$source_url',
-			'$source_citation',
 			'$source_contact_name',
 			'$source_contact_email',
 			'$date_accessed',
@@ -53,7 +51,6 @@ if ($records>1) {
 			SET
 			source_name_full='$source_name_full',
 			source_url='$source_url',
-			source_citation='$source_citation',
 			source_contact_name='$source_contact_name',
 			source_contact_email='$source_contact_email',
 			date_accessed='$date_accessed',

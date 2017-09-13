@@ -7,50 +7,76 @@
 // if no source-specific fixes required
 /////////////////////////////////////////////////////////////
 
-echo "  Populating concatenated taxon name...";
+echo "  Removing garbage rows...";
 $sql="
-UPDATE `$tbl_raw`
-SET taxon=TRIM(CONCAT_WS(' ',IFNULL(genus,''),
-IF(IFNULL(genus,'')='','',epithet)
-));
-UPDATE `$tbl_raw`
-SET taxon=NULL
-WHERE taxon=''
+DELETE FROM `$tbl_raw`
+WHERE taxon IS NULL
+;
+DELETE FROM `$tbl_raw`
+WHERE country='Unknown Origin'
 ;
 ";
 sql_execute_multiple($sql);
 echo $done;
 
-echo "  Removing cf and aff...";
+// This next operation can't use function sql_execute_multiple
+// because of embedded semi-colon
+echo "  Removing html in taxon field...";
 $sql="
 UPDATE `$tbl_raw`
-SET taxon=REPLACE(taxon,' cf.','')
-WHERE taxon LIKE '% cf.%'
-;
-UPDATE `$tbl_raw`
-SET taxon=REPLACE(taxon,' aff.','')
-WHERE taxon LIKE '% aff.%'
+SET taxon='Hondurodendron'
+WHERE taxon LIKE 'Hondurodendron%' 
+AND taxon_rank='Genus'
 ;
 ";
 sql_execute_multiple($sql);
 echo $done;
 
-// Fix entries for Musa and Eucalyptus
-echo "  Fixing entries for Musa and Eucalyptus...";
+// Converting non-standard country names
+echo "  Converting non-standard country names...";
 $sql="
 UPDATE `$tbl_raw`
-SET 
-taxon='Eucalyptus',
-epithet='',
-author=''
-WHERE genus='Eucalyptus' 
+SET country=
+CASE
+WHEN country LIKE '%Ivoire' THEN 'Ivory Coast'
+WHEN country = 'Republic of South Africa' THEN 'South Africa'
+WHEN country = 'Timor' THEN 'East Timor'
+WHEN country = 'United States of America' THEN 'United States'
+ELSE country
+END
+;
+";
+sql_execute_multiple($sql);
+echo $done;
+
+echo "  Splitting 'Korean Peninsula into separate records for N & S Korea...";
+$sql="
+INSERT INTO mab_raw (
+country,
+taxon,
+taxon_rank,
+added_by,
+include
+)
+VALUES
+(
+'North Korea',
+'Hanabusaya',
+'Genus',
+'B. Boyle',
+1
+),
+(
+'North Korea',
+'Abeliophyllum',
+'Genus',
+'B. Boyle',
+1
+)
 ;
 UPDATE `$tbl_raw`
-SET 
-taxon='Musa',
-epithet='',
-author=''
-WHERE genus='Musa' 
+SET country='South Korea'
+WHERE country='Korean Peninsula'
 ;
 ";
 sql_execute_multiple($sql);

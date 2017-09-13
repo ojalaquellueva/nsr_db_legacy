@@ -18,6 +18,16 @@ a.checklist_details
 FROM poldiv_source_staging a JOIN source b
 ON a.source_name=b.source_name
 ;
+UPDATE poldiv_source a JOIN country b
+ON a.poldiv_id=b.country_id
+SET a.poldiv_name=b.country
+WHERE a.poldiv_type='country'
+;
+UPDATE poldiv_source a JOIN state_province b
+ON a.poldiv_id=b.state_province_id
+SET a.poldiv_name=b.state_province_std
+WHERE a.poldiv_type='state_province'
+;
 ";
 sql_execute_multiple($sql);
 echo $done;

@@ -10,7 +10,7 @@
 
 echo "Adding column state_province_std to table:\r\n";
 
-echo " state_province...";
+echo "  state_province...";
 $sql="
 ALTER TABLE state_province
 ADD COLUMN state_province_std VARCHAR(100) DEFAULT NULL,
@@ -112,7 +112,7 @@ sql_execute_multiple($sql);
 echo $done;
 
 
-echo " state_province_name...";
+echo "  state_province_name...";
 $sql="
 ALTER TABLE state_province_name
 ADD COLUMN state_province_std VARCHAR(100) DEFAULT NULL,

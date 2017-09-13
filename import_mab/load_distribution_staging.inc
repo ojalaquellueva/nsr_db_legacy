@@ -9,8 +9,6 @@ $sql="
 INSERT INTO distribution_staging (
 source_name,
 country,
-state_province,
-county_parish,
 taxon,
 taxon_rank,
 native_status,
@@ -19,13 +17,11 @@ cult_status
 SELECT DISTINCT
 '$src',
 country,
-state_province,
-county_parish,
 taxon,
 taxon_rank,
 native_status,
-cult_status
-FROM fwi_raw_final
+NULL
+FROM $tbl_raw
 ;
 ";
 sql_execute_multiple($sql);

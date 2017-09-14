@@ -39,16 +39,17 @@ taxon_rank VARCHAR(50) DEFAULT NULL,
 country VARCHAR(100) DEFAULT NULL,
 stateProvince VARCHAR(150) DEFAULT NULL,
 native_status VARCHAR(50) DEFAULT NULL,
+native_status_details VARCHAR(100) DEFAULT NULL,
 INDEX (id),
 INDEX (taxon),
 INDEX (taxon_rank),
 INDEX (country),
 INDEX (stateProvince),
-INDEX (native_status)
+INDEX (native_status),
+INDEX (native_status_details)
 )  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 ";
 sql_execute_multiple($sql);
 echo $done;
 
 ?>
-

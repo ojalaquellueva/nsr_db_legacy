@@ -33,9 +33,10 @@ echo "    Standardizing countries...";
 $sql="
 UPDATE $tbl_raw_enquist_ow_endemics a JOIN countryName b
 ON a.region=b.countryName
-SET a.is_country=b.countryNameStd
+SET a.country=b.countryNameStd
 ;
 ";
 sql_execute_multiple($sql);
+echo $done;
 
 ?>

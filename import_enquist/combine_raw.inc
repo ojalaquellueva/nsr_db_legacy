@@ -33,12 +33,14 @@ $sql="
 INSERT INTO $tbl_raw (
 taxon,
 country,
-native_status
+native_status,
+native_status_details
 )
 SELECT DISTINCT
 a.taxon,
 b.country,
-'introduced'
+'introduced',
+'Introduced status inferred from endemism in Old World'
 FROM 
 (
 SELECT DISTINCT taxon

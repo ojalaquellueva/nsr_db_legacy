@@ -9,18 +9,56 @@
 
 echo "    Missing families:\r\n";
 
-echo "      Populationg missing families...";
+echo "      Looking up using database gf_lookup...";
 $sql="
 UPDATE distribution_staging a 
-JOIN gf_lookup b
+JOIN gf_lookup.genus_family b
 ON a.genus=b.genus
 SET a.family=b.family
+WHERE b.isAccepted=1
+;
+";
+sql_execute_multiple($sql);
+echo $done;
+
+echo "      Looking up using tnrs database...";
+$sql="
+-- Using tnrs, source tropicos
+UPDATE distribution_staging a 
+JOIN (
+SELECT DISTINCT family, scientificName AS genus 
+FROM tnrs4.name a join tnrs4.higherClassification b 
+ON a.nameID=b.nameID 
+JOIN tnrs4.synonym c ON a.nameID=c.nameID 
+WHERE classificationSourceID=4 
+AND nameRank='genus' 
+AND family IS NOT NULL 
+AND acceptance in ('Accepted')
+) AS b
+ON a.genus=b.genus
+SET a.family=b.family
+WHERE a.family IS NULL
+;
+-- As above, all names instead of accepted
+UPDATE distribution_staging a 
+JOIN (
+SELECT DISTINCT family, scientificName AS genus 
+FROM tnrs4.name a join tnrs4.higherClassification b 
+ON a.nameID=b.nameID 
+WHERE classificationSourceID=4 
+AND nameRank='genus' 
+AND family IS NOT NULL 
+) AS b
+ON a.genus=b.genus
+SET a.family=b.family
+WHERE a.family IS NULL
 ;
 ";
 sql_execute_multiple($sql);
 echo $done;
 
 echo "      Updating family + poldiv combinations...";
+
 // Create temporary table of missing poldiv+family combinations
 $sql="
 DROP TABLE IF EXISTS temp_missing_family

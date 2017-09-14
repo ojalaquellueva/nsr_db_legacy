@@ -32,6 +32,16 @@ $is_comprehensive=1;
 // 
 $regional_scope="country";
 
+// List of countries for which this source provides comprehensive
+// checklists. Spellings MUST agree with spellings in table country.
+// Leave empty if none. Enter names in single quotes separated by
+// commas: "'countryA','countryB','countryC'" 
+$cclist_countries="
+'Ecuador',
+'Peru',
+'Bolivia'
+";
+
 // Taxonomic scope
 //	Highest taxonomic group encompassed by this source. Can be left blank.
 //	In general, this should be "tracheophytes", "embryophytes", "bryophytes",
@@ -47,6 +57,9 @@ $source_name_full="Missouri Botanical Gardens country checklists";
 
 // Primary url for this source (optional)
 $source_url="www.http://services.tropicos.org/";	
+
+// bibtext formatted citation for thsi source
+$source_citation="";
 
 // Person who provided access to source (optional)
 $source_contact_name="Peter Jorgensen";

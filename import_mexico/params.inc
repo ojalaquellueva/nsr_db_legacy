@@ -20,6 +20,9 @@ $source_name_full="Checklist of the native vascular plants of Mexico";
 // Primary url for this source (optional)
 $source_url="http://www.sciencedirect.com/science/article/pii/S1870345316300707";	
 
+// bibtext formatted citation for thsi source
+$source_citation="";
+
 // Person who provided access to source (optional)
 $source_contact_name="José Luis Villase˜norDepartamento";
 $source_contact_email="vrios@ib.unam.mx";
@@ -30,6 +33,15 @@ $date_accessed="2017-08-28";
 
 // Short list of regions covered by this source, to 250 characters
 $focal_regions="Greater Antilles, Lesser Antilles and the Bahamas";
+
+
+// List of countries for which this source provides comprehensive
+// checklists. Spellings MUST agree with spellings in table country.
+// Leave empty if none. Enter names in single quotes separated by
+// commas: "'countryA','countryB','countryC'" 
+$cclist_countries="
+'Mexico'
+";
 
 // Comprehensiveness of this source. Two options:
 // 1 = comprehensive. Includes all species from focal region in focal taxon. Absence from 

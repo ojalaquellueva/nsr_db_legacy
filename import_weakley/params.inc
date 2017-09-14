@@ -20,6 +20,9 @@ $source_name_full="Exotics from Alan Weakley Flora of E. North America";
 // Primary url for this source (optional)
 $source_url="http://www.herbarium.unc.edu/flora.htm";	
 
+// bibtext formatted citation for thsi source
+$source_citation="";
+
 // Person who provided access to source (optional)
 $source_contact_name="Robert Peet";
 $source_contact_email="peet@unc.edu";
@@ -48,6 +51,12 @@ $is_comprehensive=0;
 // 		county_parish
 // 
 $regional_scope="state";
+
+// List of countries for which this source provides comprehensive
+// checklists. Spellings MUST agree with spellings in table country.
+// Leave empty if none. Enter names in single quotes separated by
+// commas: "'countryA','countryB','countryC'" 
+$cclist_countries="";
 
 // Taxonomic scope
 //	Highest taxonomic group encompassed by this source. Can be left blank.

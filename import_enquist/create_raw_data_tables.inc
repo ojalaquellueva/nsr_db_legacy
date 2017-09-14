@@ -4,34 +4,22 @@
 
 echo "Creating raw data tables:\r\n";
 
-echo "  raw_enquist_country_endemics...";
+echo "  $tbl_raw_enquist_ow_endemics...";
 $sql="
-DROP TABLE IF EXISTS `raw_enquist_country_endemics`;
-CREATE TABLE raw_enquist_country_endemics (
-country VARCHAR(100) DEFAULT NULL,
-taxon VARCHAR(250) DEFAULT NULL,
-INDEX (country),
-INDEX (taxon)
-)  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-";
-sql_execute_multiple($sql);
-echo $done;
-
-echo "  raw_enquist_ow_endemics...";
-$sql="
-DROP TABLE IF EXISTS `raw_enquist_ow_endemics`;
+DROP TABLE IF EXISTS `$tbl_raw_enquist_ow_endemics`;
 CREATE TABLE raw_enquist_ow_endemics (
 region VARCHAR(100) DEFAULT NULL,
 taxon VARCHAR(250) DEFAULT NULL,
+INDEX (region),
 INDEX (taxon)
 )  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 ";
 sql_execute_multiple($sql);
 echo $done;
 
-echo "  raw_enquist_cultspp...";
+echo "  $tbl_raw_enquist_cultspp...";
 $sql="
-DROP TABLE IF EXISTS `raw_enquist_cultspp`;
+DROP TABLE IF EXISTS `$tbl_raw_enquist_cultspp`;
 CREATE TABLE raw_enquist_cultspp (
 taxon VARCHAR(250) DEFAULT NULL,
 INDEX (taxon)

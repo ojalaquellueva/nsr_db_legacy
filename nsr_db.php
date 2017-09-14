@@ -93,6 +93,7 @@ if ($replace_db) {
 	include_once "create_nsr_db/state_province_std.inc";
 	include_once "create_nsr_db/fix_errors.inc";
 	include_once "create_nsr_db/make_cclist.inc";
+	include_once "create_nsr_db/gf_lookup.inc";
 }
 
 // Re-connect to database, in case previous step skipped
@@ -107,7 +108,7 @@ include_once "check_functions.inc";
 ////////////////////////////////////////////////////////////
 // Load distribution data for each source
 ////////////////////////////////////////////////////////////
-
+//exit("\r\nExiting...\r\n");
 $src_no=1;
 $src_suffix = "";
 foreach ($src_array as $src) {

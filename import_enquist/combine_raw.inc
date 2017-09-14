@@ -1,10 +1,11 @@
 <?php
 
 /////////////////////////////////////////////////////////
-// Combines raw data files into single file
+// Load country occurrences and inferred New World endemics
+// into main raw table
 /////////////////////////////////////////////////////////
 
-echo "Combining separate raw data tables in table $tbl_raw:\r\n";
+echo "Combining country occurrences and inferred New World endemics:\r\n";
 
 echo "  Inserting species endemic to specific Old World countries...";
 $sql="
@@ -17,7 +18,8 @@ SELECT DISTINCT
 taxon,
 country,
 'endemic'
-FROM raw_enquist_country_endemics
+FROM $tbl_raw_enquist_ow_endemics
+WHERE country IS NOT NULL
 ;
 ";
 sql_execute_multiple($sql);
@@ -34,15 +36,19 @@ country,
 native_status
 )
 SELECT DISTINCT
-w.taxon,
-c.country,
+a.taxon,
+b.country,
 'introduced'
-FROM raw_enquist_ow_endemics w, 
+FROM 
+(
+SELECT DISTINCT taxon
+FROM $tbl_raw_enquist_ow_endemics
+) AS a, 
 (
 SELECT DISTINCT countryNameStd AS country
 FROM countryName 
 WHERE isNewWorld=1
-) AS c
+) AS b
 ;
 ";
 sql_execute_multiple($sql);

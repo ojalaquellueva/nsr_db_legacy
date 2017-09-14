@@ -32,8 +32,12 @@ include "standardize_status.inc";
 include "create_distribution_staging.inc";
 include "load_staging.inc";
 
+// load metadata on regions covered by this source
+include "create_poldiv_source_staging.inc";
+//include "load_poldiv_source_staging.inc"; // NOT READY
+
 // delete raw data tables
-if ($drop_raw) {
+if ($drop_raw || $drap_raw_force) {
 	include "cleanup.inc";
 }
 

@@ -185,6 +185,17 @@ ADD INDEX (state_province),
 ADD INDEX (county_parish)
 ;
 
+-- Lookup of family for a genus
+-- Indexes added after loading
+DROP TABLE IF EXISTS gf_lookup;
+CREATE TABLE gf_lookup (
+gf_lookup_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
+genus VARCHAR(100) NOT NULL,
+family VARCHAR(100) NOT NULL,
+source VARCHAR(150) NOT NULL,
+PRIMARY KEY(gf_lookup_id)
+);
+
 ";
 sql_execute_multiple($sql);
 echo $done;

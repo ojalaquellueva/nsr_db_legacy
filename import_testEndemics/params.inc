@@ -20,6 +20,9 @@ $source_name_full="Test list of country endemics";
 // Primary url for this source (optional)
 $source_url="";	
 
+// bibtext formatted citation for thsi source
+$source_citation="";
+
 // Person who provided access to source (optional)
 $source_contact_name="";
 $source_contact_email="";
@@ -30,6 +33,13 @@ $date_accessed="";
 
 // Short list of regions covered by this source, to 250 characters
 $focal_regions="Various";
+
+
+// List of countries for which this source provides comprehensive
+// checklists. Spellings MUST agree with spellings in table country.
+// Leave empty if none. Enter names in single quotes separated by
+// commas: "'countryA','countryB','countryC'" 
+$cclist_countries="";
 
 // Comprehensiveness of this source. Two options:
 // 1 = comprehensive. Includes all species from focal region in focal taxon. Absence from 

@@ -32,16 +32,16 @@
 //////////////////////////////////////////////////
 
 $src_array=array(
-	"mab"
+	"enquist"
 );
 
 /*
 $src_array=array(
 	"enquist",
 	"fwi",
-	"mexico",
-	"mab",
 	"ipane",
+	"mab",
+	"mexico",
 	"tropicos",
 	"usda",
 	"vascan",
@@ -68,7 +68,8 @@ $replace_db = true;
 // Drop raw data tables after import complete?
 // (true/false)
 //////////////////////////////////////////////////
-$drop_raw=false;
+$drop_raw=true;
+$drap_raw_force=true;		// over-rides any source-specific settings
 
 //////////////////////////////////////////////////
 // Include paths and filenames

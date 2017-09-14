@@ -20,6 +20,9 @@ $source_name_full="Miscellaneous Old World endemic families, genera and species"
 // Primary url for this source (optional)
 $source_url="";	
 
+// bibtext formatted citation for thsi source
+$source_citation="";
+
 // Person who provided access to source (optional)
 $source_contact_name="Brian Enquist";
 $source_contact_email="benquist@email.arizona.edu";
@@ -36,6 +39,13 @@ $focal_regions="Old World";
 //		list may indicates non-native species
 // 0 = selective, not comprehensive. Not all taxa in region(s) include, absence not interpretable
 $is_comprehensive=0;
+
+// List of countries for which this source provides comprehensive
+// checklists. Spellings MUST agree with spellings in table country.
+// Leave empty if none.
+$cclist_countries=""
+;
+
 
 // Regional scope (political division level) of this source. For comprehensive sources, 
 // lower political divisions will also be treated as comprehensive, but but higher 
@@ -63,13 +73,22 @@ $taxonomic_scope="tracheophytes";
 // Set=false to keep existing records (name+author) and add new records only.
 $replace=true;
 
+// Set=false to keep raw tables
+// Can be over-ridden globally by drop_raw_force in global
+// params file
+$drop_raw=false;
+
 //////////////////////////////////////////////////
 // Raw data file parameters
 //////////////////////////////////////////////////
 // Names of files you will be importing
-$file_raw_enquist_country_endemics = "country_endemics.csv";
+//$file_raw_enquist_country_endemics = "country_endemics.csv";
 $file_raw_enquist_ow_endemics = "ow_endemics.csv";
 $file_raw_enquist_cultspp = "cultivated_species.csv";
+
+// Desination tables for above files
+$tbl_raw_enquist_ow_endemics = "raw_enquist_ow_endemics";
+$tbl_raw_enquist_cultspp = "raw_enquist_cultspp";
 
 // Include path to file in name if not in same directory as this script
 //$datapath="import_".$source_name."/data/";	// Default path

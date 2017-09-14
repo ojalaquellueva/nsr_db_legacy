@@ -50,7 +50,12 @@ include "insert_country_occurrences.inc";
 //exit("\r\nExiting...");
 
 include "insert_explicit_absent_introduced.inc";
+
+/* 
+// Not necessary. Implied introduced species
+//are automatically detected by NSR algorithm
 include "insert_implied_absences.inc";
+*/
 
 //////////////////////////////////////////
 // Load to staging tables 
@@ -65,7 +70,7 @@ include "create_poldiv_source_staging.inc";
 include "load_poldiv_source_staging.inc";
 
 // delete temporary tables, if any
-if ($drop_raw) {
+if ($drop_raw || $drap_raw_force) {
 	include "cleanup.inc";
 }
 

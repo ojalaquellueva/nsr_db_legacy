@@ -7,28 +7,35 @@
 // if no source-specific fixes required
 /////////////////////////////////////////////////////////////
 
-echo "  Source-specific corrections...";
+echo "  Source-specific corrections:\r\n";
 
-// Extract just the taxon name from the old world endemics table
+echo "    fixing misc glitches...";
 $sql="
-RENAME TABLE raw_enquist_ow_endemics TO raw_enquist_ow_endemics_orig
+-- Remove underscores
+UPDATE $tbl_raw_enquist_ow_endemics
+SET taxon=REPLACE(taxon,'_',' ')
+WHERE taxon LIKE '%_%'
 ;
-DROP TABLE IF EXISTS raw_enquist_ow_endemics
+UPDATE $tbl_raw_enquist_ow_endemics
+SET region=REPLACE(region,'_',' ')
+WHERE region LIKE '%_%'
 ;
-CREATE TABLE raw_enquist_ow_endemics (
-taxon VARCHAR(250) DEFAULT NULL,
-INDEX (taxon)
-)  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
-;
-INSERT INTO raw_enquist_ow_endemics (taxon)
-SELECT DISTINCT taxon
-FROM raw_enquist_ow_endemics_orig
-;
-DROP TABLE raw_enquist_ow_endemics_orig
+-- Misspellings
+UPDATE $tbl_raw_enquist_ow_endemics
+SET region='Australia'
+WHERE region='Austrailia'
 ;
 ";
 sql_execute_multiple($sql);
-
 echo $done;
+
+echo "    Standardizing countries...";
+$sql="
+UPDATE $tbl_raw_enquist_ow_endemics a JOIN countryName b
+ON a.region=b.countryName
+SET a.is_country=b.countryNameStd
+;
+";
+sql_execute_multiple($sql);
 
 ?>

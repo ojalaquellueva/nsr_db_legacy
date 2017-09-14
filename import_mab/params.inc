@@ -36,17 +36,9 @@ $focal_regions="Global";
 
 // List of countries for which this source provides comprehensive
 // checklists. Spellings MUST agree with spellings in table country.
-// Leave empty if none.
-$cclist_countries=""
-;
-
-// List of countries for which this source provides an explicit
-// partial checklists. Do not include
-// countries for which introduced species are inferred based 
-// on endemism to countries by this source.
-// Spellings MUST agree with spellings in table country
-// Leave empty if none.
-$pclist_countries="";
+// Leave empty if none. Enter names in single quotes separated by
+// commas: "'countryA','countryB','countryC'" 
+$cclist_countries="";
 
 // Comprehensiveness of this source. Two options:
 // 1 = comprehensive. Includes all species from focal region in focal taxon. Absence from 

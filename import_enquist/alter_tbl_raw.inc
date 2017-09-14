@@ -5,11 +5,15 @@
 // Comment out whatever not needed
 ///////////////////////////////////////////////////////////////
 
-echo "  Adding new columns and indexes...";
+echo "Altering raw data tables\r\n";
 
-// Add isOldWorld name field to origin table
+echo "  Adding new columns and indexes:\r\n";
+echo "    `is_country`...";
 $sql="
-
+ALTER TABLE $tbl_raw_enquist_ow_endemics
+ADD COLUMN country VARCHAR(100) DEFAULT NULL,
+ADD INDEX (country)
+;
 ";
 sql_execute_multiple($sql);
 

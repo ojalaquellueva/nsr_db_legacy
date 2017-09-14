@@ -12,13 +12,6 @@ if ($cclist_countries=="") {
 	$cclist_notin_where="country NOT IN ($cclist_countries)";
 }
 
-if ($pclist_countries=="") {
-	$pclist_notin_where="1";
-} else {
-	$pclist_notin_where="country NOT IN ($pclist_countries)";
-}
-
-
 echo "  Loading comprehensive country checklists...";
 if (!$cclist_countries=='') {
 	$sql="
@@ -68,32 +61,5 @@ AND inferred=0
 ";
 sql_execute_multiple($sql);
 echo $done;
-
-
-echo "  Loading inferred-by-endemisim partial country checklists...";
-$sql="
-INSERT INTO poldiv_source_staging (
-poldiv_id, 
-poldiv_type, 
-source_name, 
-checklist_type,
-checklist_details
-)
-SELECT DISTINCT
-a.country_id, 
-'country', 
-'$src', 
-'partial',
-'Introduced species inferred from endemics in source $src'
-FROM country a JOIN $tbl_raw b 
-ON a.country=b.country
-WHERE $cclist_notin_where
-AND $pclist_notin_where
-AND inferred=1
-;
-";
-sql_execute_multiple($sql);
-echo $done;
-
 
 ?>

@@ -20,6 +20,9 @@ $source_name_full="Database of Vascular Plants of Canada";
 // Primary url for this source (optional)
 $source_url="http://www.canadensys.net/activities/development/vascan";	
 
+// bibtext formatted citation for thsi source
+$source_citation="";
+
 // Person who provided access to source (optional)
 $source_contact_name="";
 $source_contact_email="";
@@ -30,6 +33,14 @@ $date_accessed="2014-03-10";
 
 // Short list of regions covered by this source, to 250 characters
 $focal_regions="Canada";
+
+// List of countries for which this source provides comprehensive
+// checklists. Spellings MUST agree with spellings in table country.
+// Leave empty if none. Enter names in single quotes separated by
+// commas: "'countryA','countryB','countryC'" 
+$cclist_countries="
+'Canada'
+";
 
 // Comprehensiveness of this source. Two options:
 // 1 = comprehensive. Includes all species from focal region in focal taxon. Absence from 

@@ -55,7 +55,7 @@ a.country_id,
 '$source_name_full'
 FROM country a JOIN $tbl_raw b 
 ON a.country=b.country
-WHERE $cclist_notin_where
+WHERE a.$cclist_notin_where
 AND inferred=0
 ;
 ";

@@ -32,6 +32,8 @@
 //////////////////////////////////////////////////
 
 $src_array=array(
+	"tropicos",
+	"usda",
 	"enquist"
 );
 
@@ -69,7 +71,7 @@ $replace_db = true;
 // (true/false)
 //////////////////////////////////////////////////
 $drop_raw=true;
-$drap_raw_force=true;		// over-rides any source-specific settings
+$drop_raw_force=true;		// over-rides any source-specific settings
 
 //////////////////////////////////////////////////
 // Include paths and filenames

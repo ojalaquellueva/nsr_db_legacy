@@ -38,7 +38,7 @@ include "create_poldiv_source_staging.inc";
 //include "load_poldiv_source_staging.inc"; // NOT READY
 
 // delete temporary tables, if any
-if ($drop_raw || $drap_raw_force) {
+if ($drop_raw || $drop_raw_force) {
 	include "cleanup.inc";
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-echo "  Dropping staging table...";
+echo "  Dropping staging tables...";
 $sql="
 DROP TABLE IF EXISTS distribution_staging;
 DROP TABLE IF EXISTS cultspp_staging;

@@ -53,10 +53,9 @@ a.country_id,
 '$src', 
 'partial',
 '$source_name_full'
-FROM country a JOIN $tbl_raw b 
+FROM country a JOIN tropicos_raw b 
 ON a.country=b.country
-WHERE $cclist_notin_where
-AND inferred=0
+WHERE a.$cclist_notin_where
 ;
 ";
 sql_execute_multiple($sql);

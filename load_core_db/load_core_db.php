@@ -12,6 +12,9 @@ include 'load_source.inc';
 // Load metadata on checklists
 include 'load_poldiv_source.inc';
 
+// Load metadata on comprehensive checklists
+include 'load_cclist.inc';
+
 // Delete previous records
 // Tag records linked ONLY to current source, then delete those records
 if ($replace===true) {
@@ -28,7 +31,6 @@ if (exists_table('cultspp_staging')) {
 
 // standardize status codes one last time (hack)
 include 'standardize_status.inc';
-
 include 'standardize_country.inc';
 
 // Remove staging table

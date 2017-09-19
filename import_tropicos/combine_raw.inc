@@ -6,7 +6,7 @@
 // country column on the fly
 /////////////////////////////////////////////////////////
 
-echo "Combining raw data in table tropicos_raw...";
+echo "  Combining raw data in table tropicos_raw...";
 foreach($tbl_list as $tbl) {	
 	$tbl_raw = $tbl."_raw";
 	$ctry = ucfirst($tbl);

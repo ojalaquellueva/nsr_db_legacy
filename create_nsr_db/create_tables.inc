@@ -34,6 +34,16 @@ PRIMARY KEY(distribution_id),
 FOREIGN KEY (source_id) REFERENCES source(source_id)
 );
 
+DROP TABLE IF EXISTS cclist;
+CREATE TABLE cclist (
+country VARCHAR(100) NOT NULL,
+state_province VARCHAR(100) DEFAULT '',
+county_parish VARCHAR(100) DEFAULT '',
+INDEX (country),
+INDEX (state_province),
+INDEX (county_parish)
+);
+
 DROP TABLE IF EXISTS country;
 CREATE TABLE country (
 country_id INT(11) UNSIGNED NOT NULL, 

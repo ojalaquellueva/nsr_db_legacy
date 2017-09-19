@@ -62,7 +62,7 @@ a.country_id,
 '$source_name_full'
 FROM country a JOIN $tbl_raw b 
 ON a.country=b.country
-WHERE $cclist_notin_where
+WHERE a.$cclist_notin_where
 AND inferred=0
 ;
 ";
@@ -87,8 +87,8 @@ a.country_id,
 'Introduced species inferred from endemics in source $src'
 FROM country a JOIN $tbl_raw b 
 ON a.country=b.country
-WHERE $cclist_notin_where
-AND $pclist_notin_where
+WHERE a.$cclist_notin_where
+AND a.$pclist_notin_where
 AND inferred=1
 ;
 ";

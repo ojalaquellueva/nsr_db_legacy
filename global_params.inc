@@ -30,14 +30,12 @@
 // as specified in params.inc in import subdirectory
 // for that source. 
 //////////////////////////////////////////////////
-
-$src_array=array(
-	"tropicos",
-	"usda",
-	"enquist"
-);
-
 /*
+$src_array=array(
+	"usda"
+);
+*/
+
 $src_array=array(
 	"enquist",
 	"fwi",
@@ -49,7 +47,6 @@ $src_array=array(
 	"vascan",
 	"weakley"
 );
-*/
 
 //////////////////////////////////////////////////
 // Replace database? (true/false)
@@ -70,8 +67,8 @@ $replace_db = true;
 // Drop raw data tables after import complete?
 // (true/false)
 //////////////////////////////////////////////////
-$drop_raw=true;
-$drop_raw_force=true;		// over-rides any source-specific settings
+$drop_raw=false;
+$drop_raw_force=false;		// over-rides any source-specific settings
 
 //////////////////////////////////////////////////
 // Include paths and filenames

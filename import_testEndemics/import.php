@@ -35,7 +35,7 @@ include "load_staging.inc";
 
 // load metadata on regions covered by this source
 include "create_poldiv_source_staging.inc";
-//include "load_poldiv_source_staging.inc"; // NOT READY
+include "load_poldiv_source_staging.inc"; // NOT READY
 
 // delete temporary tables, if any
 if ($drop_raw || $drop_raw_force) {

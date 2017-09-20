@@ -10,13 +10,12 @@ checklist_type,
 checklist_details
 ) 
 SELECT
-a.poldiv_id,
-a.poldiv_type,
-b.source_id,
-a.checklist_type,
-a.checklist_details
-FROM poldiv_source_staging a JOIN source b
-ON a.source_name=b.source_name
+poldiv_id,
+poldiv_type,
+$source_id,
+checklist_type,
+checklist_details
+FROM poldiv_source_staging
 ;
 UPDATE poldiv_source a JOIN country b
 ON a.poldiv_id=b.country_id

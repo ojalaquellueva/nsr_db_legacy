@@ -34,6 +34,19 @@ $date_accessed="2014-03-10";
 // Short list of regions covered by this source, to 250 characters
 $focal_regions="New England states (USA)";
 
+// List of countries for which this source provides comprehensive
+// checklists. Spellings MUST agree with spellings in table country.
+// Leave empty if none.
+$cclist_countries="";
+
+// List of countries for which this source provides an explicit
+// partial checklists. Do not include
+// countries for which introduced species are inferred based 
+// on endemism to countries by this source.
+// Spellings MUST agree with spellings in table country
+// Leave empty if none.
+$pclist_countries="";
+
 // Comprehensiveness of this source. Two options:
 // 1 = comprehensive. Includes all species from focal region in focal taxon. Absence from 
 //		list may indicates non-native species

@@ -116,6 +116,7 @@ foreach ($src_array as $src) {
 	echo "Loading source #".$src_no.": '".$src."'\r\n\r\n";	
 	$src_suffix .= "_".$src;
 	
+	include "clear_source_params.inc";
 	include_once "import_".$src."/import.php";
 	include "prepare_staging/prepare_staging.php";
 	include "load_core_db/load_core_db.php";	

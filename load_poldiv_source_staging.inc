@@ -10,12 +10,17 @@ echo "Loading checklist metadata to table poldiv_source_staging:\r\n";
 // so SQL doesn't fail
 if ($cclist_countries=="") {
 	$cclist_countries_inlist="12345";
-} 
+} else {
+	$cclist_countries_inlist=$cclist_countries;
+}
 
+/* Not needed unless activate rest of script
+// Will need to ensure parameter $pclist_countries is
+// present in each source, or check isset()
 if ($pclist_countries=="") {
 	$pclist_countries_inlist="12345";
 } 
-
+*/
 
 // Comprehensive country checklists are critical
 // For these lists, absence counts as introduced

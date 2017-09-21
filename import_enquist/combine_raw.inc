@@ -25,7 +25,7 @@ WHERE country IS NOT NULL
 sql_execute_multiple($sql);
 echo $done;
 
-echo "  Inserting Old World endemics as exotic records in each New World country...";
+echo "  Inserting Old World endemics as exotics in each New World country...";
 // Note cartesian product 
 // Inserts a record for each Old World taxon in every New World country,
 // with status='Introduced'

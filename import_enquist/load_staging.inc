@@ -45,7 +45,7 @@ taxon
 SELECT DISTINCT
 '$src',
 taxon
-FROM raw_enquist_cultspp
+FROM `$tbl_raw_enquist_cultspp`
 ;
 ";
 sql_execute_multiple($sql);

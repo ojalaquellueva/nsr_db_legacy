@@ -86,7 +86,9 @@ $datapath="import_".$source_name."/data/";	// Default path
 //$datapath="../nsr_data/".$source_name."/";		// Custom path outside repo
 
 // names of destination mysql tables
-$tbl_raw="raw_".$source_name;
+$tbl_raw=$source_name."_raw";
+$tbl_vascan_taxon_raw=$source_name."_taxon_raw";
+$tbl_vascan_distribution_raw=$source_name."_distribution_raw";
 
 // Names of fields that are passed as parameters
 $fld_scientific_name="taxon";

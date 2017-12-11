@@ -4,10 +4,10 @@
 
 echo "Creating raw data tables:\r\n";
 
-echo "  raw_weakley_exotic_part...";
+echo "  `$tbl_weakley_exotic_part_raw`...";
 $sql="
-DROP TABLE IF EXISTS `raw_weakley_exotic_part`;
-CREATE TABLE raw_weakley_exotic_part (
+DROP TABLE IF EXISTS `$tbl_weakley_exotic_part_raw`;
+CREATE TABLE `$tbl_weakley_exotic_part_raw` (
 taxon VARCHAR(250) DEFAULT NULL,
 stateProvinceCode VARCHAR(4) DEFAULT NULL,
 INDEX (taxon),
@@ -17,10 +17,10 @@ INDEX (stateProvinceCode)
 sql_execute_multiple($sql);
 echo $done;
 
-echo "  raw_weakley_exotic_all...";
+echo "  `$tbl_weakley_exotic_all_raw`...";
 $sql="
-DROP TABLE IF EXISTS `raw_weakley_exotic_all`;
-CREATE TABLE raw_weakley_exotic_all (
+DROP TABLE IF EXISTS `$tbl_weakley_exotic_all_raw`;
+CREATE TABLE `$tbl_weakley_exotic_all_raw` (
 taxon VARCHAR(250) DEFAULT NULL,
 INDEX (taxon)
 )  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -28,10 +28,10 @@ INDEX (taxon)
 sql_execute_multiple($sql);
 echo $done;
 
-echo "  raw_weakley_origin...";
+echo "  `$tbl_weakley_origin_raw`...";
 $sql="
-DROP TABLE IF EXISTS `raw_weakley_origin`;
-CREATE TABLE raw_weakley_origin (
+DROP TABLE IF EXISTS `$tbl_weakley_origin_raw`;
+CREATE TABLE `$tbl_weakley_origin_raw` (
 family VARCHAR(150) DEFAULT NULL,
 taxon VARCHAR(250) DEFAULT NULL,
 origin VARCHAR(50) DEFAULT NULL,
@@ -43,10 +43,10 @@ INDEX (origin)
 sql_execute_multiple($sql);
 echo $done;
 	
-echo "  raw_weakley_poldivs...";
+echo "  `$tbl_weakley_poldivs_raw`...";
 $sql="
-DROP TABLE IF EXISTS `raw_weakley_poldivs`;
-CREATE TABLE raw_weakley_poldivs (
+DROP TABLE IF EXISTS `$tbl_weakley_poldivs_raw`;
+CREATE TABLE `$tbl_weakley_poldivs_raw` (
 stateProvinceCode VARCHAR(4) DEFAULT NULL,
 country VARCHAR(50) DEFAULT NULL,
 INDEX (stateProvinceCode),
@@ -56,10 +56,10 @@ INDEX (country)
 sql_execute_multiple($sql);
 echo $done;
 
-echo "  raw_weakley...";
+echo "  `$tbl_raw`...";
 $sql="
-DROP TABLE IF EXISTS `raw_weakley`;
-CREATE TABLE raw_weakley (
+DROP TABLE IF EXISTS `$tbl_raw`;
+CREATE TABLE `$tbl_raw` (
 id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 taxon VARCHAR(250) DEFAULT NULL,
 taxon_rank VARCHAR(50) DEFAULT NULL,
@@ -78,4 +78,3 @@ sql_execute_multiple($sql);
 echo $done;
 
 ?>
-

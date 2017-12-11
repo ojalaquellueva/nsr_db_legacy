@@ -10,7 +10,7 @@ echo "  Completing political division information...";
 // Populate political divisions
 $sql_poldivcodes="
 SELECT DISTINCT stateProvinceCode
-FROM raw_weakley_poldivs
+FROM `$tbl_weakley_poldivs_raw`
 WHERE stateProvinceCode IS NOT NULL AND stateProvinceCode<>'';
 ";
 $result = mysql_query($sql_poldivcodes);
@@ -19,7 +19,7 @@ while ($row = mysql_fetch_assoc($result)) {
 	$poldivcode = $row["stateProvinceCode"];
 	$poldiv = get_poldivname($poldivcode);
 	$sql="
-	UPDATE raw_weakley_poldivs
+	UPDATE `$tbl_weakley_poldivs_raw`
 	SET stateProvince='$poldiv'
 	WHERE stateProvinceCode='$poldivcode';
 	";
@@ -40,7 +40,7 @@ w.taxon,
 p.country,
 p.stateProvince,
 'Introduced'
-FROM raw_weakley_exotic_part w JOIN raw_weakley_poldivs p
+FROM `$tbl_weakley_exotic_part_raw` w JOIN `$tbl_weakley_poldivs_raw` p
 ON w.stateProvinceCode=p.stateProvinceCode
 ;
 ";
@@ -62,7 +62,7 @@ w.taxon,
 p.country,
 p.stateProvince,
 'Introduced'
-FROM raw_weakley_exotic_all w, raw_weakley_poldivs p
+FROM `$tbl_weakley_exotic_all_raw` w, `$tbl_weakley_poldivs_raw` p
 ;
 ";
 sql_execute_multiple($sql);
@@ -73,7 +73,7 @@ echo "  Inserting Old World species as exotic to all New World countries...";
 // Inserts a record for every Old World taxon in every New World country,
 // with status='Introduced'
 $sql="
-UPDATE raw_weakley_origin
+UPDATE `$tbl_weakley_origin_raw`
 SET isOldWorld=1
 WHERE origin IN (
 'Asia',
@@ -100,7 +100,7 @@ SELECT DISTINCT
 w.taxon,
 c.country,
 'Introduced'
-FROM raw_weakley_origin w, 
+FROM `$tbl_weakley_origin_raw` w, 
 (
 SELECT DISTINCT countryNameStd AS country
 FROM countryName 
@@ -123,7 +123,7 @@ SELECT DISTINCT
 w.taxon,
 c.country,
 'Introduced'
-FROM raw_weakley_origin w, 
+FROM `$tbl_weakley_origin_raw` w, 
 (
 SELECT DISTINCT countryNameStd AS country
 FROM countryName 

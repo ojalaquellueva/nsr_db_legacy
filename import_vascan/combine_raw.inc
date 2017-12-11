@@ -27,7 +27,7 @@ ELSE countryCode
 END,
 locality,
 IF(establishmentMeans='','non-native',establishmentMeans)
-FROM raw_vascan_distribution d JOIN raw_vascan_taxon t
+FROM $tbl_vascan_distribution_raw d JOIN $tbl_vascan_taxon_raw t
 ON d.id=t.id
 WHERE t.acceptedNameUsageID=t.id
 AND t.species IS NOT NULL AND species NOT LIKE '% % %'

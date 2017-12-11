@@ -30,11 +30,6 @@
 // as specified in params.inc in import subdirectory
 // for that source. 
 //////////////////////////////////////////////////
-/*
-$src_array=array(
-	"usda"
-);
-*/
 
 $src_array=array(
 	"enquist",
@@ -46,6 +41,17 @@ $src_array=array(
 	"usda",
 	"vascan",
 	"weakley"
+);
+
+$src_array=array(
+	"conosur",
+	"flbr"
+);
+
+$src_array=array(
+	"weakley",
+	"vascan",
+	"enquist"
 );
 
 //////////////////////////////////////////////////

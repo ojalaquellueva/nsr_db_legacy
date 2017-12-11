@@ -11,14 +11,14 @@ echo "  Source-specific corrections...";
 
 // Fix non-standard stateProvince codes
 $sql="
-UPDATE raw_weakley_poldivs
+UPDATE $tbl_weakley_poldivs_raw
 SET stateProvinceCode=
 CASE
 WHEN stateProvinceCode='PN' THEN 'PA'
 WHEN stateProvinceCode='NL' THEN 'NF'
 ELSE stateProvinceCode
 END;
-UPDATE raw_weakley_exotic_part
+UPDATE $tbl_weakley_exotic_part_raw
 SET stateProvinceCode=
 CASE
 WHEN stateProvinceCode='PN' THEN 'PA'
@@ -30,13 +30,13 @@ sql_execute_multiple($sql);
 
 // Replace underscores with plain hybrid 'x'
 $sql="
-UPDATE raw_weakley_exotic_part
+UPDATE $tbl_weakley_exotic_part_raw
 SET taxon=REPLACE(taxon,'_','x ')
 WHERE taxon LIKE '%\_%';
-UPDATE raw_weakley_exotic_all
+UPDATE $tbl_weakley_exotic_all_raw
 SET taxon=REPLACE(taxon,'_','x ')
 WHERE taxon LIKE '%\_%';
-UPDATE raw_weakley_origin
+UPDATE $tbl_weakley_origin_raw
 SET taxon=REPLACE(taxon,'_','x ')
 WHERE taxon LIKE '%\_%';
 ";
@@ -44,13 +44,13 @@ sql_execute_multiple($sql);
 
 // Replace ssp. with subsp.
 $sql="
-UPDATE raw_weakley_exotic_part
+UPDATE $tbl_weakley_exotic_part_raw
 SET taxon=REPLACE(taxon,'ssp.','subsp.')
 WHERE taxon LIKE '%ssp.%';
-UPDATE raw_weakley_exotic_all
+UPDATE $tbl_weakley_exotic_all_raw
 SET taxon=REPLACE(taxon,'ssp.','subsp.')
 WHERE taxon LIKE '%ssp.%';
-UPDATE raw_weakley_origin
+UPDATE $tbl_weakley_origin_raw
 SET taxon=REPLACE(taxon,'ssp.','subsp.')
 WHERE taxon LIKE '%ssp.%';
 ";

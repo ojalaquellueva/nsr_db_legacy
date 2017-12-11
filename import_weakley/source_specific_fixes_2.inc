@@ -12,9 +12,9 @@ echo "  Source-specific corrections...";
 // Delete any records of taxa higher than species
 // Delete any records without at least a country
 $sql="
-DELETE FROM raw_weakley 
+DELETE FROM $tbl_raw 
 WHERE taxon NOT LIKE '% %' OR taxon IS NULL OR TRIM(taxon)='';
-DELETE FROM raw_weakley 
+DELETE FROM $tbl_raw 
 WHERE country IS NULL OR TRIM(country)='';
 ";
 sql_execute_multiple($sql);

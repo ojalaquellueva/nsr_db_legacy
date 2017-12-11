@@ -89,7 +89,12 @@ $datapath="../nsr_data/".$source_name."/";		// Custom path outside repo
 $file_ext = ".csv";
 
 // names of destination mysql tables
-$tbl_raw="raw_".$source_name;
+$tbl_raw=$source_name."_raw";
+$tbl_weakley_exotic_part_raw="weakley_exotic_part_raw";
+$tbl_weakley_exotic_all_raw="weakley_exotic_all_raw";
+$tbl_weakley_origin_raw="weakley_origin_raw";
+$tbl_weakley_poldivs_raw="weakley_poldivs_raw";
+
 
 // Names of fields that are passed as parameters
 $fld_scientific_name="taxon";

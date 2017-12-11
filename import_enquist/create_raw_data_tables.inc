@@ -7,7 +7,7 @@ echo "Creating raw data tables:\r\n";
 echo "  $tbl_raw_enquist_ow_endemics...";
 $sql="
 DROP TABLE IF EXISTS `$tbl_raw_enquist_ow_endemics`;
-CREATE TABLE raw_enquist_ow_endemics (
+CREATE TABLE `$tbl_raw_enquist_ow_endemics` (
 region VARCHAR(100) DEFAULT NULL,
 taxon VARCHAR(250) DEFAULT NULL,
 INDEX (region),
@@ -20,7 +20,7 @@ echo $done;
 echo "  $tbl_raw_enquist_cultspp...";
 $sql="
 DROP TABLE IF EXISTS `$tbl_raw_enquist_cultspp`;
-CREATE TABLE raw_enquist_cultspp (
+CREATE TABLE `$tbl_raw_enquist_cultspp` (
 taxon VARCHAR(250) DEFAULT NULL,
 INDEX (taxon)
 )  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

@@ -10,41 +10,44 @@
 // MUST BE UNIQUE
 // NO SPACES
 // MAX 50 characters
-$source_name="enquist";
+$source_name="mexico";
 
 // Longer, more descriptive name for source
 // Can have spaces; not used in any scripts
 // after adding to table `source`
-$source_name_full="Miscellaneous Old World endemic families, genera and species";
+$source_name_full="Checklist of the native vascular plants of Mexico";
 
 // Primary url for this source (optional)
-$source_url="";	
+$source_url="http://www.sciencedirect.com/science/article/pii/S1870345316300707";	
 
 // bibtext formatted citation for thsi source
 $source_citation="";
 
 // Person who provided access to source (optional)
-$source_contact_name="Brian Enquist";
-$source_contact_email="benquist@email.arizona.edu";
+$source_contact_name="José Luis Villase˜norDepartamento";
+$source_contact_email="vrios@ib.unam.mx";
 
 // Date accessed
 // yyyy-mm-dd format
-$date_accessed="2014-07-30";
+$date_accessed="2017-08-28";
 
 // Short list of regions covered by this source, to 250 characters
-$focal_regions="Old World";
+$focal_regions="Greater Antilles, Lesser Antilles and the Bahamas";
+
+
+// List of countries for which this source provides comprehensive
+// checklists. Spellings MUST agree with spellings in table country.
+// Leave empty if none. Enter names in single quotes separated by
+// commas: "'countryA','countryB','countryC'" 
+$cclist_countries="
+'Mexico'
+";
 
 // Comprehensiveness of this source. Two options:
 // 1 = comprehensive. Includes all species from focal region in focal taxon. Absence from 
 //		list may indicates non-native species
 // 0 = selective, not comprehensive. Not all taxa in region(s) include, absence not interpretable
-$is_comprehensive=0;
-
-// List of countries for which this source provides comprehensive
-// checklists. Spellings MUST agree with spellings in table country.
-// Leave empty if none.
-$cclist_countries=""
-;
+$is_comprehensive=1;
 
 // Regional scope (political division level) of this source. For comprehensive sources, 
 // lower political divisions will also be treated as comprehensive, but but higher 
@@ -61,8 +64,9 @@ $regional_scope="country";
 // Taxonomic scope
 //	Highest taxonomic group encompassed by this source. Can be left blank.
 //	In general, this should be "tracheophytes", "embryophytes", "bryophytes",
-// 	but can also be a family if this is a monographic. Currently not used;
-//	Would need to detect major higher taxon to use this information.
+// 	but can also be a family if this is a monographic. Currently not used, but
+// included for forward compatibility. Eventually I may add capability of 
+// detecting major higher taxa of each observation
 $taxonomic_scope="tracheophytes";
 //$taxonomic_scope="";
 
@@ -72,31 +76,25 @@ $taxonomic_scope="tracheophytes";
 // Set=false to keep existing records (name+author) and add new records only.
 $replace=true;
 
-// Set=false to keep raw tables
-// Can be over-ridden globally by drop_raw_force in global
-// params file
-$drop_raw=false;
-
 //////////////////////////////////////////////////
 // Raw data file parameters
 //////////////////////////////////////////////////
 // Names of files you will be importing
-//$file_raw_enquist_country_endemics = "country_endemics.csv";
-$file_raw_enquist_ow_endemics = "ow_endemics.csv";
-$file_raw_enquist_cultspp = "cultivated_species.csv";
-
-// Desination tables for above files
-$tbl_raw_enquist_ow_endemics = "enquist_ow_endemics_raw";
-$tbl_raw_enquist_cultspp = "enquist_cultspp_raw";
+$file_raw = "Mexico_checklist_parsed.csv";
+$file_species_raw = "Mexico_species_parsed.csv";
 
 // Include path to file in name if not in same directory as this script
 //$datapath="import_".$source_name."/data/";	// Default path
-$datapath="../nsr_data/".$source_name."/";		// Custom path outside repo
+$datapath="../nsr_data/".$source_name."/";		// Custom path
+
+// extension of raw data files. Must be the same for all
+$file_ext = ".csv";
 
 // names of destination mysql tables
 $tbl_raw=$source_name."_raw";
+$tbl_species_raw=$source_name."_species_raw";
 
-// Names of fields that are passed as parameters
+// Names of important fields that can be passed as parameters
 $fld_scientific_name="taxon";
 
 // Import parameters for text file

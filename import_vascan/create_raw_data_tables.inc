@@ -4,10 +4,10 @@
 
 echo "Creating raw data tables:\r\n";
 
-echo "  raw_vascan_taxon...";
+echo "  $tbl_vascan_taxon_raw...";
 $sql="
-DROP TABLE IF EXISTS `raw_vascan_taxon`;
-CREATE TABLE raw_vascan_taxon (
+DROP TABLE IF EXISTS `$tbl_vascan_taxon_raw`;
+CREATE TABLE $tbl_vascan_taxon_raw (
 id INT(11) UNSIGNED NOT NULL,
 acceptedNameUsageID INT(11) UNSIGNED NOT NULL,
 parentNameUsageID INT(11) UNSIGNED NOT NULL,
@@ -43,10 +43,10 @@ INDEX(taxonomicStatus)
 sql_execute_multiple($sql);
 echo $done;
 
-echo "  raw_vascan_distribution...";
+echo "  $tbl_vascan_distribution_raw...";
 $sql="
-DROP TABLE IF EXISTS `raw_vascan_distribution`;
-CREATE TABLE raw_vascan_distribution (
+DROP TABLE IF EXISTS `$tbl_vascan_distribution_raw`;
+CREATE TABLE $tbl_vascan_distribution_raw (
 id INT(11) UNSIGNED NOT NULL,
 locationID VARCHAR(250) DEFAULT NULL,
 locality VARCHAR(250) DEFAULT NULL,

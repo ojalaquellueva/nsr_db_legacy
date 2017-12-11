@@ -5,10 +5,10 @@
 
 echo "Loading raw data:\r\n";
 
-echo "  Importing file $file_raw_vascan_distribution to table `$tbl_vascan_distribution_raw`...";
+echo "  '$file_raw' --> `$tbl_raw`...";
 $sql = "
-LOAD DATA $local INFILE '$datapath$file_raw_vascan_distribution' 
-INTO TABLE $tbl_vascan_distribution_raw 
+LOAD DATA $local INFILE '$datapath$file_raw' 
+INTO TABLE $tbl_raw 
 $fields_terminated_by 
 $optionally_enclosed_by 
 $lines_terminated_by 
@@ -18,10 +18,10 @@ sql_execute_multiple($sql);
 if (!(empty_string_to_null($tbl_raw))) die("Error\r\n.");
 echo $done;
 
-echo "  Importing file $file_raw_vascan_taxon to table `$tbl_vascan_taxon_raw`...";
+echo "  '$file_species_raw' --> `$tbl_species_raw`...";
 $sql = "
-LOAD DATA $local INFILE '$datapath$file_raw_vascan_taxon' 
-INTO TABLE $tbl_vascan_taxon_raw 
+LOAD DATA $local INFILE '$datapath$file_species_raw' 
+INTO TABLE $tbl_species_raw 
 $fields_terminated_by 
 $optionally_enclosed_by 
 $lines_terminated_by 

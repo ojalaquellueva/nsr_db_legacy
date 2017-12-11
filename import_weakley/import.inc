@@ -5,10 +5,10 @@
 
 echo "Loading raw data:\r\n";
 
-echo "  Importing file $file_raw_weakley_exotic_part to table `raw_weakley_exotic_part`...";
+echo "  Importing file $file_raw_weakley_exotic_part to table `$tbl_weakley_exotic_part_raw`...";
 $sql = "
 LOAD DATA $local INFILE '$datapath$file_raw_weakley_exotic_part' 
-INTO TABLE raw_weakley_exotic_part 
+INTO TABLE $tbl_weakley_exotic_part_raw 
 $fields_terminated_by 
 $optionally_enclosed_by 
 $lines_terminated_by 
@@ -18,10 +18,10 @@ sql_execute_multiple($sql);
 if (!(empty_string_to_null($tbl_raw))) die("Error\r\n.");
 echo $done;
 
-echo "  Importing file $file_raw_weakley_exotic_all to table `raw_weakley_exotic_all`...";
+echo "  Importing file $file_raw_weakley_exotic_all to table `$tbl_weakley_exotic_all_raw`...";
 $sql = "
 LOAD DATA $local INFILE '$datapath$file_raw_weakley_exotic_all' 
-INTO TABLE raw_weakley_exotic_all 
+INTO TABLE $tbl_weakley_exotic_all_raw 
 $fields_terminated_by 
 $optionally_enclosed_by 
 $lines_terminated_by 
@@ -31,10 +31,10 @@ sql_execute_multiple($sql);
 if (!(empty_string_to_null($tbl_raw))) die("Error\r\n.");
 echo $done;
 
-echo "  Importing file $file_raw_weakley_origin to table `raw_weakley_origin`...";
+echo "  Importing file $file_raw_weakley_origin to table `$tbl_weakley_origin_raw`...";
 $sql = "
 LOAD DATA $local INFILE '$datapath$file_raw_weakley_origin' 
-INTO TABLE raw_weakley_origin 
+INTO TABLE $tbl_weakley_origin_raw 
 $fields_terminated_by 
 $optionally_enclosed_by 
 $lines_terminated_by 
@@ -44,10 +44,10 @@ sql_execute_multiple($sql);
 if (!(empty_string_to_null($tbl_raw))) die("Error\r\n.");
 echo $done;
 
-echo "  Importing file $file_raw_weakley_poldivs to table `raw_weakley_poldivs`...";
+echo "  Importing file $file_raw_weakley_poldivs to table `$tbl_weakley_poldivs_raw`...";
 $sql = "
 LOAD DATA $local INFILE '$datapath$file_raw_weakley_poldivs' 
-INTO TABLE raw_weakley_poldivs 
+INTO TABLE $tbl_weakley_poldivs_raw 
 $fields_terminated_by 
 $optionally_enclosed_by 
 $lines_terminated_by 

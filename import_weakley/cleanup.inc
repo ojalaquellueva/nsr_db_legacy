@@ -9,11 +9,11 @@
 
 echo "Deleting temporary tables...";
 $sql="
-DROP TABLE IF EXISTS raw_weakley;
-DROP TABLE IF EXISTS raw_weakley_exotic_all;
-DROP TABLE IF EXISTS raw_weakley_exotic_part;
-DROP TABLE IF EXISTS raw_weakley_origin;
-DROP TABLE IF EXISTS raw_weakley_poldivs;
+DROP TABLE IF EXISTS $tbl_raw;
+DROP TABLE IF EXISTS $tbl_weakley_exotic_all_raw;
+DROP TABLE IF EXISTS $tbl_weakley_exotic_part_raw;
+DROP TABLE IF EXISTS $tbl_weakley_origin_raw;
+DROP TABLE IF EXISTS $tbl_weakley_poldivs_raw;
 ";
 sql_execute_multiple($sql);
 echo $done;	

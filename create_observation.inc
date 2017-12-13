@@ -18,7 +18,8 @@ species VARCHAR(150) DEFAULT NULL,
 country VARCHAR(50) DEFAULT NULL,
 state_province VARCHAR(50) DEFAULT NULL,
 county_parish VARCHAR(50) DEFAULT NULL
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
+;
 ";
 sql_execute_multiple($sql);
 echo "done";

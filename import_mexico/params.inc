@@ -24,7 +24,7 @@ $source_url="http://www.sciencedirect.com/science/article/pii/S1870345316300707"
 $source_citation="";
 
 // Person who provided access to source (optional)
-$source_contact_name="José Luis Villase˜norDepartamento";
+$source_contact_name="José Luis Villaseñor";
 $source_contact_email="vrios@ib.unam.mx";
 
 // Date accessed

@@ -7,26 +7,49 @@
 // if no source-specific fixes required
 /////////////////////////////////////////////////////////////
 
-echo "  Removing bad records...";
+echo "  Removing extra spaces from taxon name...";
 $sql="
-DELETE a.*
-FROM `$tbl_raw` a JOIN `$tbl_species_raw` b
-ON a.species_id=b.species_id
-WHERE b.bad='BAD'
-;
+-- Three spaces
 UPDATE `$tbl_raw` 
-SET include=1
+SET taxon=REPLACE(taxon,'   ',' ')
+WHERE taxon LIKE '%   %'
+;
+-- Two spaces
+UPDATE `$tbl_raw` 
+SET taxon=REPLACE(taxon,'  ',' ')
+WHERE taxon LIKE '%  %'
 ;
 ";
 sql_execute_multiple($sql);
 echo $done;
 
-echo "  Populating taxon...";
+echo "  Fixing miscellaneous taxon name errors...";
 $sql="
-UPDATE `$tbl_raw` a JOIN `$tbl_species_raw` b
-ON a.species_id=b.species_id
-SET a.taxon=b.species,
-a.species=b.species
+UPDATE `$tbl_raw` 
+SET taxon='Muhlenbergia angustata x rigida'
+WHERE taxon='Muhlenbergia angustata (J. Presl) Kunth x M. rigida'
+;
+";
+sql_execute_multiple($sql);
+echo $done;
+
+echo "  Populating species...";
+$sql="
+-- non-hybrids
+UPDATE `$tbl_raw` 
+SET species=CONCAT_WS(' ',
+strSplit(taxon,' ',1),
+strSplit(taxon,' ',2)
+)
+WHERE taxon LIKE '% %'
+AND taxon NOT LIKE '% x %'
+;
+
+-- hybrids
+UPDATE `$tbl_raw` 
+SET species=taxon
+WHERE taxon LIKE '% %'
+AND taxon LIKE '% x %'
 ;
 ";
 sql_execute_multiple($sql);
@@ -34,17 +57,28 @@ echo $done;
 
 echo "  Populating genus...";
 $sql="
-UPDATE `$tbl_raw`
-SET genus=
-CASE
-WHEN species LIKE 'x %' THEN strSplit(species, ' ',2)
-ELSE
-strSplit(species, ' ',1)
-END
+UPDATE `$tbl_raw` 
+SET genus=strSplit(taxon,' ',1)
 ;
 ";
 sql_execute_multiple($sql);
 echo $done;
+
+// This is a hack. Allow country records to be appended, but
+// not province records. Ultimately need to parse dist_string,
+// extract province codes and translate to actual names.
+echo "  Populating missing distribution codes for Chile...";
+$sql="
+UPDATE `$tbl_raw` 
+SET Chile='Chile'
+WHERE dist_string LIKE '%CHL(%'
+;
+";
+sql_execute_multiple($sql);
+echo $done;
+
+
+
 
 
 ?>

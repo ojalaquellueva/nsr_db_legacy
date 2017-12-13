@@ -16,7 +16,7 @@ is_comprehensive INT(1) DEFAULT NULL,
 regional_scope VARCHAR(50) DEFAULT 'country',
 taxonomic_scope VARCHAR(250) DEFAULT NULL,
 PRIMARY KEY (source_id)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 DROP TABLE IF EXISTS distribution;
 CREATE TABLE distribution (
@@ -30,9 +30,10 @@ county_parish VARCHAR(100) DEFAULT NULL,
 native_status VARCHAR(50) DEFAULT NULL,
 native_status_details VARCHAR(100) DEFAULT NULL, 
 cult_status VARCHAR(50) DEFAULT NULL,
+is_cultivated_taxon INT(1) DEFAULT 0, 
 PRIMARY KEY(distribution_id),
 FOREIGN KEY (source_id) REFERENCES source(source_id)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 DROP TABLE IF EXISTS cclist;
 CREATE TABLE cclist (
@@ -42,7 +43,7 @@ county_parish VARCHAR(100) DEFAULT '',
 INDEX (country),
 INDEX (state_province),
 INDEX (county_parish)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 DROP TABLE IF EXISTS country;
 CREATE TABLE country (
@@ -56,7 +57,7 @@ INDEX (country),
 INDEX (country_iso),
 INDEX (country_iso_alpha3),
 INDEX (country_fips)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- poldiv type is also the name of the table
 -- to which FK poldiv_id points
@@ -75,7 +76,7 @@ INDEX (poldiv_type),
 INDEX (poldiv_name),
 INDEX (source_id),
 INDEX (checklist_type)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 DROP TABLE IF EXISTS countryName;
@@ -94,7 +95,7 @@ INDEX (isoCode),
 INDEX (countryCode3Char),
 INDEX (countryNameStd),
 INDEX (isNewWorld)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 DROP TABLE IF EXISTS state_province;
 CREATE TABLE state_province (
@@ -111,7 +112,7 @@ INDEX (state_province),
 INDEX (state_province_ascii),
 INDEX (state_province_code),
 INDEX (state_province_code_unique)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 DROP TABLE IF EXISTS state_province_name;
 CREATE TABLE state_province_name (
@@ -128,19 +129,17 @@ INDEX (country),
 INDEX (state_province_id),
 INDEX (state_province),
 INDEX (state_province_ascii)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 DROP TABLE IF EXISTS cultspp;
 CREATE TABLE cultspp (
 cultspp_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
 source_id INT(11) UNSIGNED NOT NULL,
-taxon_rank VARCHAR(25) NOT NULL,
 taxon VARCHAR(150) NOT NULL,
 PRIMARY KEY(cultspp_id),
-INDEX(taxon_rank),
 INDEX(taxon),
 FOREIGN KEY (source_id) REFERENCES source(source_id)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 DROP TABLE IF EXISTS cache;
 CREATE TABLE cache (
@@ -159,9 +158,23 @@ native_status_reason VARCHAR(250) DEFAULT NULL,
 native_status_sources VARCHAR(250) DEFAULT NULL,
 isIntroduced INT(1) DEFAULT NULL,
 isCultivatedNSR INT(1) DEFAULT 0,
+is_cultivated_taxon INT(1) DEFAULT 0, 
 PRIMARY KEY (id)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
+;
 
+
+-- Lookup of family for a genus
+-- Indexes added after loading
+DROP TABLE IF EXISTS gf_lookup;
+CREATE TABLE gf_lookup (
+gf_lookup_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
+genus VARCHAR(100) NOT NULL,
+family VARCHAR(100) NOT NULL,
+source VARCHAR(150) NOT NULL,
+PRIMARY KEY(gf_lookup_id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
+;
 
 ";
 sql_execute_multiple($sql);
@@ -183,7 +196,8 @@ ADD INDEX (country),
 ADD INDEX (state_province),
 ADD INDEX (county_parish),
 ADD INDEX (native_status),
-ADD INDEX (cult_status)
+ADD INDEX (cult_status),
+ADD INDEX (is_cultivated_taxon)
 ;
 
 ALTER TABLE cache
@@ -194,18 +208,6 @@ ADD INDEX (country),
 ADD INDEX (state_province),
 ADD INDEX (county_parish)
 ;
-
--- Lookup of family for a genus
--- Indexes added after loading
-DROP TABLE IF EXISTS gf_lookup;
-CREATE TABLE gf_lookup (
-gf_lookup_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
-genus VARCHAR(100) NOT NULL,
-family VARCHAR(100) NOT NULL,
-source VARCHAR(150) NOT NULL,
-PRIMARY KEY(gf_lookup_id)
-);
-
 ";
 sql_execute_multiple($sql);
 echo $done;

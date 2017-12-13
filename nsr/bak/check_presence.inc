@@ -10,16 +10,9 @@
 // statuses. 
 ////////////////////////////////////////////////////////////////
 
-// First, add another index, needed below
-$sql="
-ALTER TABLE observation
-ADD INDEX(native_status);
-";
-sql_execute_multiple($sql);	
+echo "Updating status using species presence in checklists:\r\n";
 
-//echo "Updating status using species presence in checklists:\r\n";
-
-//echo "  Presence-only (no status)...";
+echo "  Presence-only (no status)...";
 // One query for each of the 3 political divisions
 // Inherited upwards
 $sql="
@@ -34,7 +27,6 @@ o.native_status_state_province='P',
 o.native_status_county_parish='P'
 WHERE 
 d.native_status='unknown'
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -46,7 +38,6 @@ o.native_status_country='P',
 o.native_status_state_province='P'
 WHERE 
 d.native_status='unknown'
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -56,147 +47,12 @@ SET
 o.native_status_country='P'
 WHERE 
 d.native_status='unknown'
-AND $CACHE_WHERE
 ;
 ";
 sql_execute_multiple($sql);	
+echo $done;
 
-
-// echo "  Introduced status based on endemism elsewhere:\r\n";
-// Inherited downwards
-// Replaces previous designations of present, but can be 
-// over-ridden later if checklist asserts species is native
-
-//echo "    Endemic species...";
-$sql="
-UPDATE observation o JOIN distribution d
-ON o.species=d.taxon
-AND o.country=d.country
-AND o.state_province=d.state_province
-SET 
-o.native_status_country='Ne',
-o.native_status_state_province='Ne',
-o.native_status_county_parish='Ie'
-WHERE 
-d.native_status='endemic'
-AND o.county_parish<>d.county_parish
-AND $CACHE_WHERE
-;
-
-UPDATE observation o JOIN distribution d
-ON o.species=d.taxon
-AND o.country=d.country
-SET 
-o.native_status_country='Ne',
-o.native_status_state_province='Ie',
-o.native_status_county_parish=if(o.county_parish IS NULL, 'Ie', NULL)
-WHERE 
-d.native_status='endemic'
-AND o.state_province<>d.state_province
-AND $CACHE_WHERE
-;
-
-UPDATE observation o JOIN distribution d
-ON o.species=d.taxon
-SET 
-o.native_status_country='Ie',
-o.native_status_state_province=IF(o.state_province IS NOT NULL, 'Ie', NULL),
-o.native_status_county_parish=if(o.county_parish IS NOT NULL, 'Ie', NULL)
-WHERE 
-d.native_status='endemic'
-AND o.country<>d.country
-AND $CACHE_WHERE
-;
-";
-sql_execute_multiple($sql);	
-
-//echo "    Endemic genera...";
-$sql="
-UPDATE observation o JOIN distribution d
-ON o.genus=d.taxon
-AND o.country=d.country
-AND o.state_province=d.state_province
-SET 
-o.native_status_country='Ne',
-o.native_status_state_province='Ne',
-o.native_status_county_parish='Ie'
-WHERE 
-d.native_status='endemic'
-AND o.county_parish<>d.county_parish
-AND $CACHE_WHERE
-;
-
-UPDATE observation o JOIN distribution d
-ON o.genus=d.taxon
-AND o.country=d.country
-SET 
-o.native_status_country='Ne',
-o.native_status_state_province='Ie',
-o.native_status_county_parish=if(o.county_parish IS NULL, 'Ie', NULL)
-WHERE 
-d.native_status='endemic'
-AND o.state_province<>d.state_province
-AND $CACHE_WHERE
-;
-
-UPDATE observation o JOIN distribution d
-ON o.genus=d.taxon
-SET 
-o.native_status_country='Ie',
-o.native_status_state_province=IF(o.state_province IS NOT NULL, 'Ie', NULL),
-o.native_status_county_parish=if(o.county_parish IS NOT NULL, 'Ie', NULL)
-WHERE 
-d.native_status='endemic'
-AND o.country<>d.country
-AND $CACHE_WHERE
-;
-";
-sql_execute_multiple($sql);	
-
-//echo "    Endemic families...";
-$sql="
-UPDATE observation o JOIN distribution d
-ON o.family=d.taxon
-AND o.country=d.country
-AND o.state_province=d.state_province
-SET 
-o.native_status_country='Ne',
-o.native_status_state_province='Ne',
-o.native_status_county_parish='Ie'
-WHERE 
-d.native_status='endemic'
-AND o.county_parish<>d.county_parish
-AND $CACHE_WHERE
-;
-
-UPDATE observation o JOIN distribution d
-ON o.family=d.taxon
-AND o.country=d.country
-SET 
-o.native_status_country='Ne',
-o.native_status_state_province='Ie',
-o.native_status_county_parish=if(o.county_parish IS NULL, 'Ie', NULL)
-WHERE 
-d.native_status='endemic'
-AND o.state_province<>d.state_province
-AND $CACHE_WHERE
-;
-
-UPDATE observation o JOIN distribution d
-ON o.family=d.taxon
-SET 
-o.native_status_country='Ie',
-o.native_status_state_province=IF(o.state_province IS NOT NULL, 'Ie', NULL),
-o.native_status_county_parish=if(o.county_parish IS NOT NULL, 'Ie', NULL)
-WHERE 
-d.native_status='endemic'
-AND o.country<>d.country
-AND $CACHE_WHERE
-;
-";
-sql_execute_multiple($sql);	
-
-//echo "  Native species...";
+echo "  Native species...";
 // Inherited upwards
 // Replaces present
 $sql="
@@ -211,7 +67,6 @@ o.native_status_state_province='N',
 o.native_status_county_parish='N'
 WHERE 
 d.native_status='native'
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -223,7 +78,6 @@ o.native_status_country='N',
 o.native_status_state_province='N'
 WHERE 
 d.native_status='native'
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -233,20 +87,20 @@ SET
 o.native_status_country='N'
 WHERE 
 d.native_status='native'
-AND $CACHE_WHERE
 ;
 
 ";
 sql_execute_multiple($sql);	
+echo $done;
 
-//echo "  Endemic taxa:\r\n";
+echo "  Endemic taxa:\r\n";
 // Inherited upwards.
-// Replaces present, native, introduced.
+// Replaces present, native, introduces.
 // Doesn't try to resolve conflicts between lists, simply
 // treats conflicting status applied earlier in this
 // sequence as incomplete or wrong.
 
-//echo "    Species...";
+echo "    Species...";
 $sql="
 UPDATE observation o JOIN distribution d
 ON o.species=d.taxon
@@ -259,7 +113,6 @@ o.native_status_state_province='Ne',
 o.native_status_county_parish='Ne'
 WHERE 
 d.native_status='endemic'
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -271,7 +124,6 @@ o.native_status_country='Ne',
 o.native_status_state_province='Ne'
 WHERE 
 d.native_status='endemic'
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -281,12 +133,12 @@ SET
 o.native_status_country='Ne'
 WHERE 
 d.native_status='endemic'
-AND $CACHE_WHERE
 ;
 ";
 sql_execute_multiple($sql);	
+echo $done;
 
-//echo "    Genera...";
+echo "    Genera...";
 $sql="
 UPDATE observation o JOIN distribution d
 ON o.genus=d.taxon
@@ -299,7 +151,6 @@ o.native_status_state_province='Ne',
 o.native_status_county_parish='Ne'
 WHERE 
 d.native_status='endemic'
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -311,7 +162,6 @@ o.native_status_country='Ne',
 o.native_status_state_province='Ne'
 WHERE 
 d.native_status='endemic'
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -321,12 +171,12 @@ SET
 o.native_status_country='Ne'
 WHERE 
 d.native_status='endemic'
-AND $CACHE_WHERE
 ;
 ";
 sql_execute_multiple($sql);	
+echo $done;
 
-//echo "    Families...";
+echo "    Families...";
 $sql="
 UPDATE observation o JOIN distribution d
 ON o.family=d.taxon
@@ -339,7 +189,6 @@ o.native_status_state_province='Ne',
 o.native_status_county_parish='Ne'
 WHERE 
 d.native_status='endemic'
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -351,7 +200,6 @@ o.native_status_country='Ne',
 o.native_status_state_province='Ne'
 WHERE 
 d.native_status='endemic'
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -361,11 +209,138 @@ SET
 o.native_status_country='Ne'
 WHERE 
 d.native_status='endemic'
-AND $CACHE_WHERE
 ";
 sql_execute_multiple($sql);	
+echo $done;
 
-//echo "  Introduced species...";
+echo "  Introduced status based on endemism elsewhere:\r\n";
+// Inherited downwards
+// Replaces previous designations of present, native
+
+echo "    Species...";
+$sql="
+UPDATE observation o JOIN distribution d
+ON o.species=d.taxon
+AND o.country=d.country
+AND o.state_province=d.state_province
+SET 
+o.native_status_country='Ne',
+o.native_status_state_province='Ne',
+o.native_status_county_parish='Ie'
+WHERE 
+d.native_status='endemic'
+AND o.county_parish<>d.county_parish
+;
+
+UPDATE observation o JOIN distribution d
+ON o.species=d.taxon
+AND o.country=d.country
+SET 
+o.native_status_country='Ne',
+o.native_status_state_province='Ie',
+o.native_status_county_parish=if(o.county_parish IS NULL, 'Ie', NULL)
+WHERE 
+d.native_status='endemic'
+AND o.state_province<>d.state_province
+;
+
+UPDATE observation o JOIN distribution d
+ON o.species=d.taxon
+SET 
+o.native_status_country='Ie',
+o.native_status_state_province=IF(o.state_province IS NOT NULL, 'Ie', NULL),
+o.native_status_county_parish=if(o.county_parish IS NOT NULL, 'Ie', NULL)
+WHERE 
+d.native_status='endemic'
+AND o.country<>d.country
+;
+";
+sql_execute_multiple($sql);	
+echo $done;
+
+echo "    Genera...";
+$sql="
+UPDATE observation o JOIN distribution d
+ON o.genus=d.taxon
+AND o.country=d.country
+AND o.state_province=d.state_province
+SET 
+o.native_status_country='Ne',
+o.native_status_state_province='Ne',
+o.native_status_county_parish='Ie'
+WHERE 
+d.native_status='endemic'
+AND o.county_parish<>d.county_parish
+;
+
+UPDATE observation o JOIN distribution d
+ON o.genus=d.taxon
+AND o.country=d.country
+SET 
+o.native_status_country='Ne',
+o.native_status_state_province='Ie',
+o.native_status_county_parish=if(o.county_parish IS NULL, 'Ie', NULL)
+WHERE 
+d.native_status='endemic'
+AND o.state_province<>d.state_province
+;
+
+UPDATE observation o JOIN distribution d
+ON o.genus=d.taxon
+SET 
+o.native_status_country='Ie',
+o.native_status_state_province=IF(o.state_province IS NOT NULL, 'Ie', NULL),
+o.native_status_county_parish=if(o.county_parish IS NOT NULL, 'Ie', NULL)
+WHERE 
+d.native_status='endemic'
+AND o.country<>d.country
+;
+";
+sql_execute_multiple($sql);	
+echo $done;
+
+echo "    Families...";
+$sql="
+UPDATE observation o JOIN distribution d
+ON o.family=d.taxon
+AND o.country=d.country
+AND o.state_province=d.state_province
+SET 
+o.native_status_country='Ne',
+o.native_status_state_province='Ne',
+o.native_status_county_parish='Ie'
+WHERE 
+d.native_status='endemic'
+AND o.county_parish<>d.county_parish
+;
+
+UPDATE observation o JOIN distribution d
+ON o.family=d.taxon
+AND o.country=d.country
+SET 
+o.native_status_country='Ne',
+o.native_status_state_province='Ie',
+o.native_status_county_parish=if(o.county_parish IS NULL, 'Ie', NULL)
+WHERE 
+d.native_status='endemic'
+AND o.state_province<>d.state_province
+;
+
+UPDATE observation o JOIN distribution d
+ON o.family=d.taxon
+SET 
+o.native_status_country='Ie',
+o.native_status_state_province=IF(o.state_province IS NOT NULL, 'Ie', NULL),
+o.native_status_county_parish=if(o.county_parish IS NOT NULL, 'Ie', NULL)
+WHERE 
+d.native_status='endemic'
+AND o.country<>d.country
+;
+";
+sql_execute_multiple($sql);	
+echo $done;
+
+echo "  Introduced species...";
 // Inherited downwards
 // Replaces present, native, endemic 
 // Doesn't attempt to resolve conflicting status
@@ -388,7 +363,6 @@ WHERE
 d.native_status IN ('introduced','non-native','not native')
 AND d.state_province IS NULL
 AND d.county_parish IS NULL
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -401,7 +375,6 @@ o.native_status_county_parish=IF(o.county_parish IS NOT NULL, 'I', NULL)
 WHERE 
 d.native_status IN ('introduced','non-native','not native')
 AND d.county_parish IS NULL
-AND $CACHE_WHERE
 ;
 
 UPDATE observation o JOIN distribution d
@@ -414,7 +387,6 @@ o.native_status_county_parish='I'
 WHERE 
 d.native_status IN ('introduced','non-native','not native')
 AND d.county_parish IS NULL
-AND $CACHE_WHERE
 ;
 ";
 sql_execute_multiple($sql);	
@@ -439,8 +411,8 @@ SET
 o.native_status_country='I',
 o.native_status_state_province=IF(o.state_province IS NOT NULL, 'I',NULL),
 o.native_status_county_parish=IF(o.county_parish IS NOT NULL, 'I', NULL)
-WHERE $CACHE_WHERE
-AND d.native_status IN ('introduced','non-native','not native')
+WHERE 
+d.native_status IN ('introduced','non-native','not native')
 AND d.state_province IS NULL
 AND d.county_parish IS NULL
 AND $special_where
@@ -455,13 +427,16 @@ SET
 o.native_status_country='I',
 o.native_status_state_province='I',
 o.native_status_county_parish=IF(o.county_parish IS NOT NULL, 'I', NULL)
-WHERE $CACHE_WHERE
-AND d.native_status IN ('introduced','non-native','not native')
+WHERE 
+d.native_status IN ('introduced','non-native','not native')
 AND d.county_parish IS NULL
 AND $special_where
 ;
 
 ";
 sql_execute_multiple($sql);	
+echo $done;
+
+
 
 ?>

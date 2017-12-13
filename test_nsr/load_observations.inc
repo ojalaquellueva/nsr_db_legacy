@@ -34,6 +34,7 @@ AND isGeoValid=1
 AND observationType='specimen'
 AND country IN ('Ecuador','Bolivia','Peru','Nicaragua','Canada','United States')
 AND countyParish IS NULL
+LIMIT 100
 ;
 ";
 sql_execute_multiple($sql);
@@ -72,11 +73,67 @@ NULL
 'Alberta'
 ),
 (
+'Pinaceae',
+'Abies',
+'Abies koreana',
+'Canada',
+'Alberta'
+),
+(
+'Pinaceae',
+'Abies',
+'Abies firma',
+'Peru',
+NULL
+),
+(
 'Tetracentraceae',
 'Tetracentrus',
 'Tetracentrus communis',
 'Nicaragua',
 NULL
+),
+(
+'Pinaceae',
+'Pseudotsuga',
+'Pseudotsuga menziesii',
+'Canada',
+'British Columbia'
+),
+(
+'Pinaceae',
+'Picea',
+'Picea sitchensis',
+'Canada',
+'Ontaria'
+),
+(
+'Malvaceae',
+'Ceiba',
+'Ceiba pentandra',
+'Canada',
+'British Columbia'
+),
+(
+'Malvaceae',
+'Ceiba',
+'Ceiba pentandra',
+'United States',
+'Missouri'
+),
+(
+'Pinaceae',
+'Pseudotsuga',
+'Pseudotsuga menziesii',
+'Ecuador',
+NULL
+),
+(
+'Pinaceae',
+'Pseudotsuga',
+'Pseudotsuga menziesii',
+'Ecuador',
+'Carchi'
 )
 ;
 ";

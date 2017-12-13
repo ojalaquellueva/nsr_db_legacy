@@ -10,7 +10,7 @@
 // which are exclusively or widely cultivated
 ////////////////////////////////////////////////////////////////
 
-//echo "Updating cultivated status...";
+echo "Updating cultivated status...";
 
 $sql="
 -- species
@@ -20,7 +20,7 @@ SET o.is_cultivated_taxon=1
 ;
 ";
 sql_execute_multiple($sql);	
-//echo $done;
+echo $done;
 
 
 ?>

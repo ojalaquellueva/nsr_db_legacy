@@ -30,6 +30,11 @@ FROM distribution_staging
 WHERE native_status IN ('native','endemic') AND taxon_rank<>'hybrid'
 AND taxon LIKE '% % %';
 ;
+
+ALTER TABLE temp_missing_species
+ADD COLUMN del VARCHAR(15) DEFAULT NULL
+;
+
 ALTER TABLE temp_missing_species
 ADD INDEX (country),
 ADD INDEX (state_province),
@@ -43,14 +48,17 @@ ON s.species=d.taxon
 AND s.country=d.country 
 AND s.state_province=d.state_province
 AND s.county_parish=d.county_parish
-SET s.species='DELETE'
-AND d.taxon LIKE '% % %';
+SET s.del='DELETE'
+WHERE d.taxon LIKE '% % %';
 ;
+
+ALTER TABLE temp_missing_species
+ADD INDEX (del)
 ;
 
 -- Delete marked records
 DELETE FROM temp_missing_species
-WHERE species='DELETE'
+WHERE del='DELETE'
 ;
 ";
 sql_execute_multiple($sql);

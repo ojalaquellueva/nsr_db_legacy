@@ -16,11 +16,12 @@ ADD UNIQUE INDEX(id)
 ";
 sql_execute_multiple($sql);
 
-// Add taxon columns
+// Add taxon, rank and include columns
 $sql="
+-- taxon columns
 ALTER TABLE `$tbl_raw`
-ADD COLUMN taxon VARCHAR(250) DEFAULT NULL AFTER family,
-ADD INDEX (taxon)
+ADD COLUMN family VARCHAR(250) DEFAULT NULL AFTER taxon_id,
+ADD INDEX (family)
 ;
 ALTER TABLE `$tbl_raw`
 ADD COLUMN genus VARCHAR(250) DEFAULT NULL AFTER taxon,
@@ -30,20 +31,15 @@ ALTER TABLE `$tbl_raw`
 ADD COLUMN species VARCHAR(250) DEFAULT NULL AFTER genus,
 ADD INDEX (species)
 ;
-";
-sql_execute_multiple($sql);
 
-// Add taxon rank field
-$sql="
+
+-- taxon rank
 ALTER TABLE `$tbl_raw`
-ADD COLUMN taxon_rank VARCHAR(25) DEFAULT NULL AFTER taxon,
+ADD COLUMN taxon_rank VARCHAR(25) DEFAULT NULL AFTER taxon_id,
 ADD INDEX (taxon_rank)
 ;
-";
-sql_execute_multiple($sql);
 
-// Add include field
-$sql="
+-- Include field
 ALTER TABLE `$tbl_raw`
 ADD COLUMN include INT(1) DEFAULT 1,
 ADD INDEX (include)

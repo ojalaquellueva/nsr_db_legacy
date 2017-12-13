@@ -24,6 +24,11 @@ SELECT DISTINCT country, state_province, county_parish, genus
 FROM distribution_staging
 WHERE native_status IN ('native','endemic') AND taxon_rank<>'hybrid'
 ;
+
+ALTER TABLE temp_missing_genus
+ADD column del VARCHAR(15) default null
+;
+
 ALTER TABLE temp_missing_genus
 ADD INDEX (country),
 ADD INDEX (state_province),
@@ -35,12 +40,16 @@ ADD INDEX (genus)
 UPDATE temp_missing_genus g JOIN distribution_staging d
 ON g.genus=d.taxon AND g.country=d.country AND g.state_province=d.state_province
 AND g.county_parish=d.county_parish
-SET g.genus='DELETE'
+SET g.del='DELETE'
+;
+
+ALTER TABLE temp_missing_genus
+ADD INDEX (del)
 ;
 
 -- Delete marked records
 DELETE FROM temp_missing_genus
-WHERE genus='DELETE' OR genus IS NULL OR TRIM(genus)=''
+WHERE del='DELETE' OR genus IS NULL OR TRIM(genus)=''
 ;
 ";
 sql_execute_multiple($sql);

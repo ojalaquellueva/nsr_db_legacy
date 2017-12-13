@@ -4,15 +4,14 @@ echo "  Loading table cultspp...";
 $sql="
 INSERT INTO cultspp (
 source_id,
-taxon_rank,
 taxon
 )
 SELECT DISTINCT
 $source_id,
-taxon_rank,
 taxon
 FROM cultspp_staging
-WHERE is_in_db=0;
+WHERE is_in_db=0
+AND taxon_rank IN ('species','var.','susp.','fo.','variety','subspecies','forma','infraspecies','subspecific');
 ;
 ";
 sql_execute_multiple($sql);

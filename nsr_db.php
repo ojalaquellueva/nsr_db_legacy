@@ -130,10 +130,10 @@ foreach ($src_array as $src) {
 echo "\r\n#############################################\r\n";
 echo "Completing general operations on core database:\r\n\r\n";	
 include_once "generic_operations/newfoundland_hack.inc";
-// Remove any remaining temporary tables
-if ($drop_raw==true) {
-	include_once "cleanup_raw.inc";
-}
+include_once "generic_operations/set_permissions.inc";
+
+// Remove any remaining temporary tables, as requested in params
+include_once "cleanup_final.inc";
 
 //////////////////////////////////////////////////////////////////
 // Close connection and report total time elapsed 

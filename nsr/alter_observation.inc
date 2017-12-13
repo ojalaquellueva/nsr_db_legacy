@@ -14,6 +14,7 @@ ADD COLUMN native_status_reason VARCHAR(250) DEFAULT NULL,
 ADD COLUMN native_status_sources VARCHAR(250) DEFAULT NULL,
 ADD COLUMN isIntroduced INT(1) DEFAULT NULL,
 ADD COLUMN isCultivatedNSR INT(1) DEFAULT 0,
+ADD COLUMN is_cultivated_taxon INT(1) DEFAULT 0,
 ADD COLUMN isInCache INT(1) DEFAULT 0,
 ADD PRIMARY KEY (id),
 ADD INDEX (native_status_country),
@@ -24,6 +25,7 @@ ADD INDEX (native_status_reason),
 ADD INDEX (native_status_sources),
 ADD INDEX (isIntroduced),
 ADD INDEX (isCultivatedNSR),
+ADD INDEX (is_cultivated_taxon),
 ADD INDEX (isInCache)
 ;
 ";

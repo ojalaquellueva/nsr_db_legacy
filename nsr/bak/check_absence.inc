@@ -33,11 +33,14 @@
 // separate script.
 ////////////////////////////////////////////////////////////////
 
+echo "Marking species absent from comprehensive checklists:\r\n";
+
 
 ///////////////////////////////////////////////////
 // Mark all political divisions in observation
 // table covered by comprehensive lists
 ///////////////////////////////////////////////////
+echo "  Country-level...";
 $sql="
 UPDATE observation o JOIN cclist d
 ON o.country=d.country
@@ -46,11 +49,12 @@ o.native_status_country='A'
 WHERE 
 d.state_province IS NULL
 AND d.county_parish IS NULL
-AND $CACHE_WHERE
 ;
 ";
 sql_execute_multiple($sql);	
+echo $done;
 
+echo "  State-level...";
 $sql="
 UPDATE observation o JOIN cclist d
 ON o.country=d.country
@@ -59,11 +63,12 @@ SET
 o.native_status_state_province='A'
 WHERE 
 d.county_parish IS NULL
-AND $CACHE_WHERE
 ;
 ";
 sql_execute_multiple($sql);	
+echo $done;
 
+echo "  County-level...";
 $sql="
 UPDATE observation o JOIN cclist d
 ON o.country=d.country
@@ -71,9 +76,10 @@ AND o.state_province=d.state_province
 AND o.county_parish=d.county_parish
 SET 
 o.native_status_county_parish='A'
-WHERE $CACHE_WHERE
 ;
 ";
 sql_execute_multiple($sql);	
+echo $done;
+
 
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 
 ///////////////////////////////////////////////////////////
 // Appends any new records from observation table to cache
@@ -48,7 +48,8 @@ native_status,
 native_status_reason,
 native_status_sources,
 isIntroduced,
-isCultivatedNSR
+isCultivatedNSR,
+is_cultivated_taxon
 )
 SELECT
 family,
@@ -64,7 +65,8 @@ native_status,
 native_status_reason,
 native_status_sources,
 isIntroduced,
-isCultivatedNSR
+isCultivatedNSR,
+is_cultivated_taxon
 FROM observation
 WHERE isInCache=1
 ;

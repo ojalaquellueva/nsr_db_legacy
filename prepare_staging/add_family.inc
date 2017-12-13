@@ -31,6 +31,10 @@ FROM distribution_staging
 WHERE native_status<>'introduced' AND taxon_rank<>'hybrid'
 ;
 ALTER TABLE temp_missing_family
+ADD COLUMN del VARCHAR(50) DEFAULT NULL
+;
+
+ALTER TABLE temp_missing_family
 ADD INDEX (country),
 ADD INDEX (state_province),
 ADD INDEX (county_parish),
@@ -41,12 +45,16 @@ ADD INDEX (family)
 UPDATE temp_missing_family f JOIN distribution_staging d
 ON f.family=d.taxon AND f.country=d.country AND f.state_province=d.state_province
 AND f.county_parish=d.county_parish
-SET f.family='DELETE'
+SET f.del='DELETE'
+;
+
+ALTER TABLE temp_missing_family
+ADD INDEX (del)
 ;
 
 -- Delete marked records
 DELETE FROM temp_missing_family
-WHERE family='DELETE' OR family IS NULL OR TRIM(family)=''
+WHERE del='DELETE' OR family IS NULL OR TRIM(family)=''
 ;
 ";
 sql_execute_multiple($sql);

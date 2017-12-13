@@ -32,6 +32,11 @@
 //////////////////////////////////////////////////
 
 $src_array=array(
+	"conosur",
+	"flbr"
+);
+
+$src_array=array(
 	"enquist",
 	"fwi",
 	"ipane",
@@ -44,14 +49,32 @@ $src_array=array(
 );
 
 $src_array=array(
-	"conosur",
-	"flbr"
+	"conosur"
 );
 
-$src_array=array(
-	"weakley",
-	"vascan",
-	"enquist"
+
+//////////////////////////////////////////////////
+// Users & access levels
+//
+// IMPORTANT! These users will be granted access to
+// the completed database. All usernames must already 
+// exist in MySQL. This variable is an array with one
+// username + access level per line, separated by pipe (|)
+// and surround by double quotes, quoted elements 
+// separated by commas. If you do not wish to grant any
+// privileges, set to entire array to empty string "".
+//
+// Access levels:
+//	read: SELECT only
+//	write: SELECT, INSERT, UPDATE, DELETE, CREATE, DROP (tables only)
+//	admin: All privileges
+//////////////////////////////////////////////////
+
+$usr_array=array(
+	"bien_read|read",
+	"bien_web|read",
+	"bien_write|write",
+	"nsr|write"
 );
 
 //////////////////////////////////////////////////
@@ -75,6 +98,7 @@ $replace_db = true;
 //////////////////////////////////////////////////
 $drop_raw=false;
 $drop_raw_force=false;		// over-rides any source-specific settings
+$drop_staging_force=false;		// over-rides any source-specific settings
 
 //////////////////////////////////////////////////
 // Include paths and filenames

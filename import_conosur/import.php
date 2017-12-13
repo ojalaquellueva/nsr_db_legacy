@@ -17,11 +17,12 @@ echo "Standardizing $tbl_raw:\r\n";
 // Add any extra columns and indexes needed
 include "alter_raw.inc";
 
+// standardize hybrid x to plain ascii
+// Do this first so hybrid x's correctly detected in next step
+include "fix_hybrid_x.inc";
+
 // Make fixes specific to this source, if any
 include "source_specific_fixes.inc";
-
-// standardize hybrid x to plain ascii
-include "fix_hybrid_x.inc";
 
 // separate taxon name from author and dump to taxon field
 include "detect_rank.inc";

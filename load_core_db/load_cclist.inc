@@ -25,6 +25,21 @@ DROP TABLE cclist;
 RENAME TABLE cclist_temp TO cclist;
 ";
 sql_execute_multiple($sql);	
+//echo $done;
+
+// Setting empty strings to null for state and county
+// Essential for absence flagging to work
+$sql="
+UPDATE cclist
+SET state_province=NULL
+WHERE trim(state_province)=''
+;
+UPDATE cclist
+SET county_parish=NULL
+WHERE trim(county_parish)=''
+;
+";
+sql_execute_multiple($sql);	
 echo $done;
 
 

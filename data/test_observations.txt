@@ -1,0 +1,113 @@
+family	genus	species	country	state_province	county_parish	user_id
+Cactaceae	Opuntia	Opuntia chlorotica	United States	Arizona	NULL	0
+Cactaceae	Opuntia	Opuntia phaeacantha	United States	Arizona	NULL	0
+Caprifoliaceae	Valeriana	Valeriana rumicoides	Ecuador	NULL	NULL	0
+Caprifoliaceae	Valeriana	Valeriana rumicoides	Ecuador	Pichincha	NULL	0
+Caprifoliaceae	Valeriana	Valeriana rumicoides	Ecuador	Tungurahua	NULL	0
+Caprifoliaceae	Valeriana	Valeriana rumicoides	Ecuador	Cotopaxi	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Ecuador	Pastaza	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Ecuador	NULL	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Ecuador	Esmeraldas	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Bolivia	Santa Cruz	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Peru	Loreto	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Bolivia	NULL	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Peru	Cusco	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Peru	Loreto	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Peru	Junin	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Peru	NULL	NULL	0
+Melastomataceae	Miconia	Miconia erioclada	Peru	Huanuco	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Nicaragua	NULL	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Ecuador	NULL	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Peru	San Martin	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Bolivia	NULL	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Nicaragua	Atlantico Norte	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Nicaragua	Rio San Juan	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Nicaragua	Jinotega	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Bolivia	Santa Cruz	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Bolivia	La Paz	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Nicaragua	Atlantico Sur	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Peru	Loreto	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Peru	Loreto	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Ecuador	Esmeraldas	NULL	0
+Melastomataceae	Clidemia	Clidemia capitellata	Nicaragua	Atlantico Sur	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Matagalpa	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Boaco	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Rivas	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Jinotega	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Granada	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	NULL	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Managua	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Esteli	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Nueva Segovia	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Atlantico Sur	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Ecuador	Guayas	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Ecuador	Pastaza	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Ecuador	Esmeraldas	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Ecuador	Manabi	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Ecuador	Los Rios	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Chontales	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Atlantico Norte	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Ecuador	NULL	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Rivas	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Atlantico Norte	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Rio San Juan	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Madriz	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Carazo	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Managua	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Bolivia	Santa Cruz	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Chontales	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Chinandega	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Leon	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Peru	NULL	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Bolivia	NULL	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Nicaragua	Masaya	NULL	0
+Convolvulaceae	Merremia	Merremia umbellata	Peru	Huanuco	NULL	0
+Araceae	Caladium	Caladium bicolor	Ecuador	NULL	NULL	0
+Araceae	Caladium	Caladium bicolor	Ecuador	Pastaza	NULL	0
+Araceae	Caladium	Caladium bicolor	Ecuador	Manabi	NULL	0
+Araceae	Caladium	Caladium bicolor	Nicaragua	Managua	NULL	0
+Araceae	Caladium	Caladium bicolor	Nicaragua	Leon	NULL	0
+Araceae	Caladium	Caladium bicolor	Nicaragua	Atlantico Norte	NULL	0
+Araceae	Caladium	Caladium bicolor	Ecuador	Los Rios	NULL	0
+Araceae	Caladium	Caladium bicolor	Nicaragua	Chontales	NULL	0
+Araceae	Caladium	Caladium bicolor	Nicaragua	Atlantico Sur	NULL	0
+Araceae	Caladium	Caladium bicolor	Peru	Amazonas	NULL	0
+Araceae	Caladium	Caladium bicolor	Nicaragua	Rio San Juan	NULL	0
+Araceae	Caladium	Caladium bicolor	Peru	Loreto	NULL	0
+Araceae	Caladium	Caladium bicolor	Nicaragua	Nueva Segovia	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Bolivia	NULL	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Nicaragua	Atlantico Norte	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Nicaragua	Chontales	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Ecuador	Los Rios	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Ecuador	Esmeraldas	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Nicaragua	Atlantico Sur	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Bolivia	Santa Cruz	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Nicaragua	Jinotega	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Nicaragua	Rio San Juan	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Bolivia	La Paz	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Ecuador	Loja	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Ecuador	Guayas	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Ecuador	Esmeraldas	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Nicaragua	Rivas	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Ecuador	Pastaza	NULL	0
+Rubiaceae	Faramea	Faramea occidentalis	Ecuador	NULL	NULL	0
+Solanaceae	Solanum	Solanum hirtum	Nicaragua	Managua	NULL	0
+Solanaceae	Solanum	Solanum hirtum	Nicaragua	Rivas	NULL	0
+Solanaceae	Solanum	Solanum hirtum	Nicaragua	Rio San Juan	NULL	0
+Solanaceae	Solanum	Solanum hirtum	Ecuador	Los Rios	NULL	0
+Solanaceae	Solanum	Solanum hirtum	Nicaragua	Esteli	NULL	0
+Solanaceae	Solanum	Solanum hirtum	Nicaragua	Granada	NULL	0
+Asteraceae	Aetheolaena	Aetheolaena otophora	Ecuador	Azuay	NULL	0
+Asteraceae	Grosvenoria	Grosvenoria rimbachii	Ecuador	Carchi	NULL	0
+Myrtaceae	Eucalyptus	Eucalyptus communis	Nicaragua	NULL	NULL	0
+Myrtaceae	Eucalyptus	Eucalyptus communis	Australia	NULL	NULL	0
+Myrtaceae	Eucalyptus	Eucalyptus communis	Canada	Alberta	NULL	0
+Pinaceae	Abies	Abies koreana	Canada	Alberta	NULL	0
+Pinaceae	Abies	Abies firma	Peru	NULL	NULL	0
+Tetracentraceae	Tetracentrus	Tetracentrus communis	Nicaragua	NULL	NULL	0
+Pinaceae	Pseudotsuga	Pseudotsuga menziesii	Canada	British Columbia	NULL	0
+Pinaceae	Picea	Picea sitchensis	Canada	Ontaria	NULL	0
+Malvaceae	Ceiba	Ceiba pentandra	Canada	British Columbia	NULL	0
+Malvaceae	Ceiba	Ceiba pentandra	United States	Missouri	NULL	0
+Pinaceae	Pseudotsuga	Pseudotsuga menziesii	Ecuador	NULL	NULL	0
+Pinaceae	Pseudotsuga	Pseudotsuga menziesii	Ecuador	Carchi	NULL	0

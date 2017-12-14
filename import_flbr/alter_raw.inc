@@ -5,6 +5,9 @@
 // Comment out whatever not needed
 ///////////////////////////////////////////////////////////////
 
+// NOTHING NEEDED HERE FOR THIS SOURCE
+
+/*
 echo "  Adding new columns and indexes...";
 
 // Add a primary key
@@ -51,5 +54,6 @@ ADD INDEX (include)
 ";
 sql_execute_multiple($sql);
 echo $done;
+*/
 
 ?>

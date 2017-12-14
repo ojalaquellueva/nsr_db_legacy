@@ -11,11 +11,18 @@ include "create_raw_data_tables.inc";
 
 // import raw data file
 include "import.inc";
-
-echo "Standardizing $tbl_raw:\r\n";
+include "index_raw.inc";
 
 // Add any extra columns and indexes needed
-include "alter_raw.inc";
+//include "alter_raw.inc";		// NOT NEEDED
+
+// Load main raw table from separate taxon and distribution tables
+include "load_raw.inc";
+
+// Index main raw table
+include "index_raw2.inc";
+
+echo "Standardizing $tbl_raw:\r\n";
 
 // Make fixes specific to this source, if any
 include "source_specific_fixes.inc";
@@ -24,7 +31,7 @@ include "source_specific_fixes.inc";
 include "fix_hybrid_x.inc";
 
 // separate taxon name from author and dump to taxon field
-include "detect_rank.inc";
+//include "detect_rank.inc";		// NOT NEEDED
 
 // load data from combined raw data table to standardized staging table
 include "create_distribution_staging.inc";

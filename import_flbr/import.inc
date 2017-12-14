@@ -5,30 +5,30 @@
 
 echo "Loading raw data:\r\n";
 
-echo "  '$file_raw' --> `$tbl_raw`...";
+echo "  '$file_dist' --> `$tbl_dist_raw`...";
 $sql = "
-LOAD DATA $local INFILE '$datapath$file_raw' 
-INTO TABLE $tbl_raw 
+LOAD DATA $local INFILE '$datapath$file_dist' 
+INTO TABLE $tbl_dist_raw 
 $fields_terminated_by 
 $optionally_enclosed_by 
 $lines_terminated_by 
 $ignore_lines;
 ";
 sql_execute_multiple($sql);
-if (!(empty_string_to_null($tbl_raw))) die("Error\r\n.");
+if (!(empty_string_to_null($tbl_dist_raw))) die("Error\r\n.");
 echo $done;
 
-echo "  '$file_species_raw' --> `$tbl_species_raw`...";
+echo "  '$file_taxon' --> `$tbl_taxon_raw`...";
 $sql = "
-LOAD DATA $local INFILE '$datapath$file_species_raw' 
-INTO TABLE $tbl_species_raw 
+LOAD DATA $local INFILE '$datapath$file_taxon' 
+INTO TABLE $tbl_taxon_raw 
 $fields_terminated_by 
 $optionally_enclosed_by 
 $lines_terminated_by 
 $ignore_lines;
 ";
 sql_execute_multiple($sql);
-if (!(empty_string_to_null($tbl_raw))) die("Error\r\n.");
+if (!(empty_string_to_null($tbl_taxon_raw))) die("Error\r\n.");
 echo $done;
 
 ?>

@@ -7,7 +7,7 @@
 // By: Brad Boyle
 // Contact: bboyle@email.arizona.edu
 // Date created: 18 Feb. 2014
-// Date last revised: 
+// Date last revised: 13 Dec. 2017
 //
 // Everything you need to set is here and in local
 // params.inc file in each import directory
@@ -32,11 +32,8 @@
 //////////////////////////////////////////////////
 
 $src_array=array(
+	"flbr",
 	"conosur",
-	"flbr"
-);
-
-$src_array=array(
 	"enquist",
 	"fwi",
 	"ipane",
@@ -47,11 +44,6 @@ $src_array=array(
 	"vascan",
 	"weakley"
 );
-
-$src_array=array(
-	"conosur"
-);
-
 
 //////////////////////////////////////////////////
 // Users & access levels
@@ -96,9 +88,9 @@ $replace_db = true;
 // Drop raw data tables after import complete?
 // (true/false)
 //////////////////////////////////////////////////
-$drop_raw=false;
-$drop_raw_force=false;		// over-rides any source-specific settings
-$drop_staging_force=false;		// over-rides any source-specific settings
+$drop_raw=true;
+$drop_raw_force=true;		// over-rides any source-specific settings
+$drop_staging_force=true;		// over-rides any source-specific settings
 
 //////////////////////////////////////////////////
 // Include paths and filenames

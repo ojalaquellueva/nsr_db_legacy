@@ -10,37 +10,47 @@
 // MUST BE UNIQUE
 // NO SPACES
 // MAX 50 characters
-$source_name="mexico";
+$source_name="flbr";
 
 // Longer, more descriptive name for source
 // Can have spaces; not used in any scripts
 // after adding to table `source`
-$source_name_full="Checklist of the native vascular plants of Mexico";
+$source_name_full="Brazilian Flora 2020 project";
 
 // Primary url for this source (optional)
-$source_url="http://www.sciencedirect.com/science/article/pii/S1870345316300707";	
+$source_url="http://ipt.jbrj.gov.br/jbrj/resource?r=lista_especies_flora_brasil#downloads";	
 
 // bibtext formatted citation for thsi source
-$source_citation="";
+$source_citation="@article{b14,
+author = {Brazil Flora, G.},
+journal = {Instituto de Pesquisas Jardim Botanico do Rio de Janeiro},
+note = {Dataset/Checklist.},
+pages = {15468},
+title = {Brazilian Flora 2020 project - Projeto Flora do Brasil 2020. v393.140},
+volume = {v393.140},
+year = {2014},
+doi = {10.15468/1mtkaw},
+url = {http://ipt.jbrj.gov.br/jbrj/resource?r=lista_especies_flora_brasil#downloads},
+}
+";
 
 // Person who provided access to source (optional)
-$source_contact_name="José Luis Villase˜norDepartamento";
-$source_contact_email="vrios@ib.unam.mx";
+$source_contact_name="Group Brazil Flora";
+$source_contact_email="floradobrasil2020@jbrj.gov.br";
 
 // Date accessed
 // yyyy-mm-dd format
-$date_accessed="2017-08-28";
+$date_accessed="2017-11-27";
 
 // Short list of regions covered by this source, to 250 characters
-$focal_regions="Greater Antilles, Lesser Antilles and the Bahamas";
-
+$focal_regions="Brazil";
 
 // List of countries for which this source provides comprehensive
 // checklists. Spellings MUST agree with spellings in table country.
 // Leave empty if none. Enter names in single quotes separated by
 // commas: "'countryA','countryB','countryC'" 
 $cclist_countries="
-'Mexico'
+'Brazil'
 ";
 
 // Comprehensiveness of this source. Two options:
@@ -67,7 +77,7 @@ $regional_scope="country";
 // 	but can also be a family if this is a monographic. Currently not used, but
 // included for forward compatibility. Eventually I may add capability of 
 // detecting major higher taxa of each observation
-$taxonomic_scope="tracheophytes";
+$taxonomic_scope="Algae, fungi and vascular plants";
 //$taxonomic_scope="";
 
 // Replace previous records for this source?
@@ -80,19 +90,17 @@ $replace=true;
 // Raw data file parameters
 //////////////////////////////////////////////////
 // Names of files you will be importing
-$file_raw = "Mexico_checklist_parsed.csv";
-$file_species_raw = "Mexico_species_parsed.csv";
+$file_dist = "distribution.txt";
+$file_taxon = "taxon.txt";
 
 // Include path to file in name if not in same directory as this script
 //$datapath="import_".$source_name."/data/";	// Default path
 $datapath="../nsr_data/".$source_name."/";		// Custom path
 
-// extension of raw data files. Must be the same for all
-$file_ext = ".csv";
-
 // names of destination mysql tables
+$tbl_dist_raw=$source_name."_dist_raw";
+$tbl_taxon_raw=$source_name."_taxon_raw";
 $tbl_raw=$source_name."_raw";
-$tbl_species_raw=$source_name."_species_raw";
 
 // Names of important fields that can be passed as parameters
 $fld_scientific_name="taxon";
@@ -101,11 +109,11 @@ $fld_scientific_name="taxon";
 // Needed for 'LOAD DATA INFILE' statement
 // Set any variable to empty string to remove entirely
 $local = " LOCAL ";	// LOCAL keyword
-$fields_terminated_by = " FIELDS TERMINATED BY ',' ";
-//$fields_terminated_by = " FIELDS TERMINATED BY '\t' ";
-$optionally_enclosed_by = " OPTIONALLY ENCLOSED BY '\"' ";  // use if text surrounded by quotes
-//$optionally_enclosed_by = "";
-$lines_terminated_by = " LINES TERMINATED BY '\r' ";
+//$fields_terminated_by = " FIELDS TERMINATED BY ',' ";
+$fields_terminated_by = " FIELDS TERMINATED BY '\t' ";
+//$optionally_enclosed_by = " OPTIONALLY ENCLOSED BY '\"' ";  // use if text surrounded by quotes
+$optionally_enclosed_by = "";
+$lines_terminated_by = " LINES TERMINATED BY '\n' ";
 $ignore_lines = " IGNORE 1 LINES ";	// Ignore header line?
 
 ////////////////////////////////////////////////////////////////////////////////////

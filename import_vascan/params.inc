@@ -81,9 +81,8 @@ $replace=true;
 $file_raw_vascan_distribution = "distribution.txt";
 $file_raw_vascan_taxon = "taxon.txt";
 
-// Include path to file in name if not in same directory as this script
-$datapath="import_".$source_name."/data/";	// Default path
-//$datapath="../nsr_data/".$source_name."/";		// Custom path outside repo
+// Directory in which data for this source are stored
+$datapath = $data_dir . $source_name."/";		
 
 // names of destination mysql tables
 $tbl_raw=$source_name."_raw";

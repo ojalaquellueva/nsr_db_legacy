@@ -83,10 +83,9 @@ $replace=true;
 //////////////////////////////////////////////////
 // Raw data file parameters
 //////////////////////////////////////////////////
-// Names of files you will be importing
-// Include path to file in name if not in same directory as this script
-//$datapath="import_".$source_name."/data/";	// Default path
-$datapath="../nsr_data/".$source_name."/";		// Custom path outside repo
+
+// Directory in which data for this source are stored
+$datapath = $data_dir . $source_name."/";		
 
 // list of prefixes of individual raw data tables
 // these MUST be same as prefix of raw data files, minus the extension

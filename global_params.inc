@@ -45,6 +45,11 @@ $src_array=array(
 	"weakley"
 );
 
+$src_array=array(
+	"enquist",
+	"vascan"
+);
+
 //////////////////////////////////////////////////
 // Users & access levels
 //
@@ -70,6 +75,29 @@ $usr_array=array(
 );
 
 //////////////////////////////////////////////////
+// Include paths and filenames
+//////////////////////////////////////////////////
+
+$base_dir = "/home/boyle/";
+$app_dir = $base_dir . "nsr/nsr_db/";
+$data_dir = $app_dir . "../data/db/";
+$global_utilities_path = $base_dir."global_utilities/";
+$local_utilities_path = "functions/";
+
+include $global_utilities_path."functions.inc";
+include $global_utilities_path."taxon_functions.inc";
+include $global_utilities_path."sql_functions.inc";
+include $global_utilities_path."geo_functions.inc";
+$timer_on=$global_utilities_path."timer_on.inc";
+$timer_off=$global_utilities_path."timer_off.inc";
+
+//////////////////////////////////////////////////
+// Db connection file
+//////////////////////////////////////////////////
+
+$config_file = "../db_config_nsr_db.inc";
+
+//////////////////////////////////////////////////
 // Replace database? (true/false)
 //
 // IMPORTANT! Set to true to replace database entirely
@@ -91,26 +119,6 @@ $replace_db = true;
 $drop_raw=true;
 $drop_raw_force=true;		// over-rides any source-specific settings
 $drop_staging_force=true;		// over-rides any source-specific settings
-
-//////////////////////////////////////////////////
-// Include paths and filenames
-//////////////////////////////////////////////////
-
-$local_utilities_path="functions/";
-$global_utilities_path="../global_utilities/";
-
-include $global_utilities_path."functions.inc";
-include $global_utilities_path."taxon_functions.inc";
-include $global_utilities_path."sql_functions.inc";
-include $global_utilities_path."geo_functions.inc";
-$timer_on=$global_utilities_path."timer_on.inc";
-$timer_off=$global_utilities_path."timer_off.inc";
-
-//////////////////////////////////////////////////
-// Db connection info
-//////////////////////////////////////////////////
-
-include_once "../db_config_nsr.inc";
 
 //////////////////////////////////////////////////
 // Error-reporting & runtime behavior

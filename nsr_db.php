@@ -23,6 +23,8 @@
 
 include "global_params.inc";
 
+include_once $config_file;
+
 // Make list of sources
 $sources = "";
 foreach ($src_array as $src) {

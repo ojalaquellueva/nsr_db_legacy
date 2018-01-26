@@ -83,9 +83,8 @@ $replace=true;
 $file_raw = "Mexico_checklist_parsed.csv";
 $file_species_raw = "Mexico_species_parsed.csv";
 
-// Include path to file in name if not in same directory as this script
-//$datapath="import_".$source_name."/data/";	// Default path
-$datapath="../nsr_data/".$source_name."/";		// Custom path
+// Directory in which data for this source are stored
+$datapath = $data_dir . $source_name."/";		
 
 // extension of raw data files. Must be the same for all
 $file_ext = ".csv";

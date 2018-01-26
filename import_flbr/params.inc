@@ -93,9 +93,8 @@ $replace=true;
 $file_dist = "distribution.txt";
 $file_taxon = "taxon.txt";
 
-// Include path to file in name if not in same directory as this script
-//$datapath="import_".$source_name."/data/";	// Default path
-$datapath="../nsr_data/".$source_name."/";		// Custom path
+// Directory in which data for this source are stored
+$datapath = $data_dir . $source_name."/";		
 
 // names of destination mysql tables
 $tbl_dist_raw=$source_name."_dist_raw";

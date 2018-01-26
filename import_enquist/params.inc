@@ -89,9 +89,8 @@ $file_raw_enquist_cultspp = "cultivated_species.csv";
 $tbl_raw_enquist_ow_endemics = "enquist_ow_endemics_raw";
 $tbl_raw_enquist_cultspp = "enquist_cultspp_raw";
 
-// Include path to file in name if not in same directory as this script
-//$datapath="import_".$source_name."/data/";	// Default path
-$datapath="../nsr_data/".$source_name."/";		// Custom path outside repo
+// Directory in which data for this source are stored
+$datapath = $data_dir . $source_name."/";		
 
 // names of destination mysql tables
 $tbl_raw=$source_name."_raw";

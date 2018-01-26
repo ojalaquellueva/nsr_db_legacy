@@ -85,9 +85,8 @@ $replace=true;
 $file_raw = "usda_plants_native_status.csv";
 //$file_raw = "usda_plants_native_status_test.csv";
 
-// Include path to file in name if not in same directory as this script
-$datapath="import_".$source_name."/data/";	// Default path
-//$datapath="../nsr_data/".$source_name."/";		// Custom path outside repo
+// Directory in which data for this source are stored
+$datapath = $data_dir . $source_name."/";		
 
 // extension of raw data files. Must be the same for all
 $file_ext = ".csv";

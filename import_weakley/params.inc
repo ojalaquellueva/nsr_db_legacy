@@ -81,9 +81,8 @@ $file_raw_weakley_exotic_all = "exoticToAllE.NAm.csv";
 $file_raw_weakley_origin = "WeakleyList-withOrigin.csv";
 $file_raw_weakley_poldivs = "PoliticalUnitsInE.NAm.csv";
 
-// Include path to file in name if not in same directory as this script
-//$datapath="import_".$source_name."/data/";	// Default path
-$datapath="../nsr_data/".$source_name."/";		// Custom path outside repo
+// Directory in which data for this source are stored
+$datapath = $data_dir . $source_name."/";		
 
 // extension of raw data files. Must be the same for all
 $file_ext = ".csv";
@@ -94,7 +93,6 @@ $tbl_weakley_exotic_part_raw="weakley_exotic_part_raw";
 $tbl_weakley_exotic_all_raw="weakley_exotic_all_raw";
 $tbl_weakley_origin_raw="weakley_origin_raw";
 $tbl_weakley_poldivs_raw="weakley_poldivs_raw";
-
 
 // Names of fields that are passed as parameters
 $fld_scientific_name="taxon";

@@ -1,3 +1,6 @@
+# Legacy repository for original nsr database application
+# See repository ojalaquellueva/nsr for current nsr db code, in subdirectory nsr_db
+
 NSR (Native Status Resolver)
 
 Created by: Brad Boyle
